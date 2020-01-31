@@ -89,7 +89,7 @@ void sdPrinter(double pressure, float temp0, float temp1, float temp2, float for
 void setup() {
 
   // Start Serial comms
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // Initialize load cell
   LoadCell.begin(LOADCELL_DATA_PIN, LOADCELL_SCK_PIN);
