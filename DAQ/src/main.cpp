@@ -52,7 +52,7 @@ float force;
 SdFatSdio SD;
 File of;
 
-// ================================= FUNCITON DEFINITIONS =================================
+// ================================= FUNCTION DEFINITIONS =================================
 
 void serialPrinter(double pressure, float temp0, float temp1, float temp2, float force){
   Serial.print(millis());
@@ -69,21 +69,22 @@ void serialPrinter(double pressure, float temp0, float temp1, float temp2, float
 };
 
 void sdPrinter(double pressure, float temp0, float temp1, float temp2, float force) {
-  of = SD.open("datalog.dat", FILE_WRITE);
+  
+  if (of = SD.open("datalog.dat", FILE_WRITE)) {
+    of.print(millis());
+    of.print(", ");
+    of.print(pressure);
+    of.print(", ");
+    of.print(temp0);
+    of.print(", ");
+    of.print(temp1);
+    of.print(", ");
+    of.print(temp2);
+    of.print(", ");
+    of.println(force, 5);
 
-  of.print(millis());
-  of.print(", ");
-  of.print(pressure);
-  of.print(", ");
-  of.print(temp0);
-  of.print(", ");
-  of.print(temp1);
-  of.print(", ");
-  of.print(temp2);
-  of.print(", ");
-  of.println(force, 5); //returns a float. 2nd param is # of decimal places to display/record. In grams the 1st dec is definitely unreliable. 
-
-  of.close();
+    of.close();
+  }
 }
 
 void setup() {
@@ -101,7 +102,6 @@ void setup() {
   of = SD.open("datalog.dat", FILE_WRITE);
   of.println("TIME, PRESSURE, TEMP0, TEMP1, TEMP2, FORCE");
   of.close();
-  
 }
 
 void loop() {
@@ -123,5 +123,5 @@ void loop() {
   serialPrinter(pressure, temp0, temp1, temp2, force);
   sdPrinter(pressure, temp0, temp1, temp2, force);
 
-  // delay(500);
+  delay(10);
 }
