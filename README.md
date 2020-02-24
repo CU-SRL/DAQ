@@ -1,8 +1,39 @@
 # DAQ
 
-Code for Static Test Stand DAQ
+Code for Static Test Stand DAQ computer.
 
-## Teensy Pin Assignemnts
+## v2.0
+
+### Main iterative changes
+
+Changes to the DAQ from v1.0 to v2.0 are hardware-based:
+
+- Use a larger enclosure that's easier to work in
+- Hard-mount components to minimize risk of physical damage
+- Use aviation-style connectors for pressure transducer and load cell connection (v1 had issues with repetitive strain failure on pin-header type connectors)
+
+### Parts List
+
+|      Name/Description      |              Part Number              | Price  | Quantity |
+| :------------------------: | :-----------------------------------: | :----: | :------: |
+|         Controller         |              Teensy 3.6               | $31.52 |    1     |
+|          SD card           |         Kingston 8GB SD Card          | $3.99  |    1     |
+|    Thermocouple Modules    |          Sparkfun MAX31855K           | $15.95 |    3     |
+|   Thermocouple Connector   |          Sparkfun PCC-SMP-K           | $3.95  |    3     |
+|       Thermocouples        |      5pcs 3M Type-K Thermocouple      | $13.66 |    1     |
+|       Load Cell Amp        |            Sparkfun HX711             | $9.95  |    1     |
+|         Breadboard         |          4pcs Breadboard kit          | $9.99  |    1     |
+|        Hookup Wire         |     6 color 22AWG Hookup Wire Kit     | $17.70 |    1     |
+|      Breadboard wires      |            Jumper Wire Kit            | $11.99 |    1     |
+|         USB Cable          |      "Micro USB 2.0 cable, 3ft."      | $4.99  |    1     |
+|       USB Extension        |     Tripp-Lite 15m Active USB 2.0     | $33.32 |    1     |
+|       DAQ Connectors       | 10-pair 4 Pin Aviation Plug Connector | $10.90 |    1     |
+| Load Cell/Transducer Cable |       500ft. 22/4 Stranded wire       | $29.95 |    1     |
+|         Enclosure          |       BUD Industries NBF-32016        | $27.92 |    1     |
+
+## v1.0
+
+### Teensy Pin Assignemnts
 
 | Teensy Pin |                  Target                   |
 | :--------: | :---------------------------------------: |
@@ -15,7 +46,7 @@ Code for Static Test Stand DAQ
 |     30     |          Load Cell Clock ("SCK")          |
 |    A13     |        Pressure Transducer Signal         |
 
-## Load Cell Wiring
+### Load Cell Wiring
 
 | Wire Color | M12 Connector Pin Number | Description  |
 | :--------: | :----------------------: | :----------: |
@@ -24,7 +55,7 @@ Code for Static Test Stand DAQ
 |   White    |            3             |   Signal -   |
 |   Green    |            4             |   Signal +   |
 
-## Resources
+### Resources
 
 [Teensy Pinout](https://www.pjrc.com/teensy/card9a_rev1.pdf)
 [Thermocouple Breakout Documentation](https://learn.sparkfun.com/tutorials/max31855k-thermocouple-breakout-hookup-guideZ)
