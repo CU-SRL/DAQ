@@ -31,9 +31,19 @@ Changes to the DAQ from v1.0 to v2.0 are hardware-based:
 | Load Cell/Transducer Cable |       500ft. 22/4 Stranded wire       | $29.95 |    1     |
 |         Enclosure          |       BUD Industries NBF-32016        | $27.92 |    1     |
 
+### USB Connector Pin Assignments
+
+| USB Color | Pin Number |
+| :-------: | :--------: |
+|    Red    |     1      |
+|   White   |     2      |
+|   Green   |     3      |
+|   Black   |     4      |
+
+
 ## v1.0
 
-### Teensy Pin Assignemnts
+### Teensy Pin Assignments
 
 | Teensy Pin |                  Target                   |
 | :--------: | :---------------------------------------: |
@@ -48,12 +58,12 @@ Changes to the DAQ from v1.0 to v2.0 are hardware-based:
 
 ### Load Cell Wiring
 
-| Wire Color | M12 Connector Pin Number | Description  |
-| :--------: | :----------------------: | :----------: |
-|    Red     |            1             | Excitation + |
-|   Black    |            2             | Excitation - |
-|   White    |            3             |   Signal -   |
-|   Green    |            4             |   Signal +   |
+|  Wire Color  | Connector Pin Number | Description  |
+| :----------: | :------------------: | :----------: |
+|     Red      |          1           | Excitation + |
+|    Black     |          2           | Excitation - |
+|  White/Blue  |          3           |   Signal -   |
+| Green/Yellow |          4           |   Signal +   |
 
 ### Resources
 
