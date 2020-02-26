@@ -47,7 +47,7 @@ Changes to the DAQ from v1.0 to v2.0 are hardware-based:
 
 | Teensy Pin |                  Target                   |
 | :--------: | :---------------------------------------: |
-| 11 (MISO0) |    Thermocouple Boards SO (Serial Out)    |
+| 12 (MISO0) |    Thermocouple Boards SO (Serial Out)    |
 | 13 (SCK0)  |  Thermocouple Boards SCK (Serial Clock)   |
 |     16     |             Thermocouple VCC              |
 |     17     |             Thermocouple GND              |
