@@ -41,3 +41,6 @@
 **/.vscode/launch.json
 **/.vscode/ipch
 /DAQ/.vscode/*
+
+# NodeJS
+/pi/server/node_modules

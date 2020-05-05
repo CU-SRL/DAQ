@@ -2,6 +2,20 @@
 
 Code for Static Test Stand DAQ computer.
 
+## v3.0
+
+### Main Changes
+
+- Add a Raspberry Pi to host a web interface
+- Add internal power
+- Add support for 15V supply, 0-10V signal pressure transducers
+
+### Raspberry Pi Setup
+
+- Hardware: Raspbery Pi Model 3B
+- OS: [Ubuntu Server 18.04LTS for ARM 64-bit](https://ubuntu.com/download/raspberry-pi)
+- Web server is Flask in Python
+
 ## v2.0
 
 ### Main iterative changes
