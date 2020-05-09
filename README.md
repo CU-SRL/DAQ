@@ -66,9 +66,9 @@ Changes to the DAQ from v1.0 to v2.0 are hardware-based:
 |     16     |             Thermocouple VCC              |
 |     17     |             Thermocouple GND              |
 | {35,36,37} | Thermocouple Chip Selects (one per board) |
-|     29     |           Load Cell Data ("DT")           |
-|     30     |          Load Cell Clock ("SCK")          |
-|    A13     |        Pressure Transducer Signal         |
+|     29     |          Load Cell Data ("DAT")           |
+|     30     |          Load Cell Clock ("CLK")          |
+|  A12-A14   |        Pressure Transducer Signal         |
 
 ### Load Cell Wiring
 
@@ -79,9 +79,16 @@ Changes to the DAQ from v1.0 to v2.0 are hardware-based:
 |  White/Blue  |          3           |   Signal -   |
 | Green/Yellow |          4           |   Signal +   |
 
+**NOTE:** *I screwed up the color coding here. White is, by convention and by labeling on the HX711 breakout, generally S+, while green is S-. This may or may not be why the load cell seems to read negative of what it should.*
+
 ### Resources
 
 [Teensy Pinout](https://www.pjrc.com/teensy/card9a_rev1.pdf)
+
 [Thermocouple Breakout Documentation](https://learn.sparkfun.com/tutorials/max31855k-thermocouple-breakout-hookup-guideZ)
+
 [Load Cell Amp Documentation](https://learn.sparkfun.com/tutorials/load-cell-amplifier-hx711-breakout-hookup-guide/all) *Note: description is for a different breakout board, but uses the same SOC.*
+
 [Load Cell Connector Pinout](https://ptglobal-cdn.s3.ap-southeast-2.amazonaws.com/file_asset_store/fileasset/300/file/39e91befa7.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJEAX2FF3ZMX66G3Q%2F20200131%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Date=20200131T051506Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=243de9526c2ff692fd20c8bb86888d24aea5ec9f95a52d6aeea2c118842127e3)
+
+[Teensy Altium Library](https://github.com/urill/teensy3.6-lib-altium)

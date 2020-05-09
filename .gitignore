@@ -44,3 +44,7 @@
 
 # NodeJS
 /pi/server/node_modules
+
+# Altium Files
+DAQ Schematics/History
+DAQ Schematics/__Previews
