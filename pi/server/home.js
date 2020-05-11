@@ -1,3 +1,8 @@
+// Window reload event listener
+window.addEventListener("beforeunload", event => {
+    event.returnValue = "Session data may be lost. Do not reload if DAQ has been damaged.";
+})
+
 var temperatureChart
 var forceChart
 var pressureChart
