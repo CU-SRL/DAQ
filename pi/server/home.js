@@ -219,7 +219,7 @@ function updatePressure (t,P) {
 }
 
 function updateForce (t,F) {
-    pressureChart.data.datasets[0].data.push({
+    forceChart.data.datasets[0].data.push({
         x: t,
         y: F
     })
