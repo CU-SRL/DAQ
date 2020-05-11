@@ -2,7 +2,7 @@ var temperatureChart
 var forceChart
 var pressureChart
 
-function initCharts() {
+initCharts = () => {
 
     // Get canvas elements
     var temperatureCanvas = document.getElementById('temperatureCanvas').getContext('2d');
@@ -196,33 +196,33 @@ function initCharts() {
     pressureChart = new Chart(pressureCanvas, pressureConfig);
 }
 
-function updateTemperature (t,T) {
+pushTemperature = (t,T) => {
     temperatureChart.data.datasets.forEach((dataset,idx) => {
         dataset.data.push({
             x: t[idx],
             y: T[idx]
         })
     })
-
-    temperatureChart.update()
 }
 
-function updatePressure (t,P) {
+updateTemperature = () => {temperatureChart.update()}
+
+pushPressure = (t,P) => {
     pressureChart.data.datasets.forEach((dataset,idx) => {
         dataset.data.push({
             x: t[idx],
             y: P[idx]
         })
     })
-    
-    pressureChart.update()
 }
 
-function updateForce (t,F) {
+updatePressure = () => {pressureChart.update()}
+
+pushForce = (t,F) => {
     forceChart.data.datasets[0].data.push({
         x: t,
         y: F
     })
-    
-    forceChart.update()
 }
+
+updateForce = () => {forceChart.update()}
