@@ -52,6 +52,7 @@ float force;
 // ================================= FUNCTION DEFINITIONS =================================
 
 void serialPrinter(double pressure1, double pressure2, double pressure3, float temp0, float temp1, float temp2, float force){
+  Serial.print("Sample, ");
   Serial.print(millis());
   Serial.print(", ");
   Serial.print(pressure1, 5);
