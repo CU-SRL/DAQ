@@ -48,3 +48,6 @@
 # Altium Files
 DAQ Schematics/History
 DAQ Schematics/__Previews
+
+# Database  files
+*.db
