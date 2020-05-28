@@ -6,7 +6,7 @@
 CREATE TABLE IF NOT EXISTS parameters (
     name TEXT NOT NULL PRIMARY KEY,
     cal_factor REAL,
-    units REAL,
+    units TEXT,
     description TEXT DEFAULT '');
 
 -- Table of DAQ data
@@ -25,11 +25,11 @@ CREATE TABLE IF NOT EXISTS daq (
 DELETE FROM daq;
 DELETE FROM parameters;
 
-INSERT INTO parameters(name) VALUES 
-    (P1),
-    (P2),
-    (P3),
-    (T1),
-    (T2),
-    (T3),
-    (F);
+INSERT INTO parameters(name,units,description) VALUES 
+    (P1,'kPa','Pressure Transducer 1'),
+    (P2,'kPa','Pressure Transducer 2'),
+    (P3,'kPa','Pressure Transducer 3'),
+    (T1,'K','Thermocouple 1'),
+    (T2,'K','Thermocouple 2'),
+    (T3,'K','Thermocouple 3'),
+    (F,'N','Load Cell');
