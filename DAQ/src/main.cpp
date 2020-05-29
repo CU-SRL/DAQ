@@ -2,13 +2,10 @@
 #include <HX711.h>
 #include <SparkFunMAX31855k.h> // Using the max31855k driver
 #include <SdFat.h>
+#include <Thread.h>
+#include <StaticThreadController.h>
 
 // Deprecated includes
-// #include <Servo.h>
-// #include <SPI.h>  // Included here too due Arduino IDE; Used in above header
-
-// HX711 library: https://github.com/bogde/HX711
-// this is also in the lib manager - authors Bogdan Necula, Andreas Motl
 
 // ================================= HARDWARE DEFINITION =================================
 
@@ -49,7 +46,23 @@ double pressure1,pressure2,pressure3;
 // Float to store load cell data
 float force;
 
-// ================================= FUNCTION DEFINITIONS =================================
+// ================================== THREAD DEFINITIONS ==================================
+
+Thread loadCellThread = Thread();
+Thread thermoThread = Thread();
+Thread ducerThread = Thread();
+
+StaticThreadController<3> controller(&loadCellThread,&thermoThread,&ducerThread);
+
+// ============================= THREAD FUNCTION DEFINITIONS ==============================
+
+void loadCellLoop() {
+  force = LoadCell.get_value();
+  Serial.print("F,");
+  Serial.println(force,5);
+}
+
+// TODO define other threads
 
 void serialPrinter(double pressure1, double pressure2, double pressure3, float temp0, float temp1, float temp2, float force){
   Serial.print("Sample, ");
@@ -77,12 +90,22 @@ void setup() {
 
   // Initialize load cell
   LoadCell.begin(LOADCELL_DATA_PIN, LOADCELL_SCK_PIN);
-  LoadCell.set_scale(CALIBRATION_FACTOR);
+  LoadCell.set_scale(CALIBRATION_FACTOR); // TODO remove calibration (can be performed in Python)
   LoadCell.tare(); // zero at startup
+
+  // Init threads
+  loadCellThread.onRun(loadCellLoop);
+  loadCellThread.setInterval(20);
+
+  // TODO add more threads here
 
 }
 
 void loop() {
+
+  controller.run();
+
+  // TODO remove everything else!
 
   // Sample thermocouples
   temp0 = probe0.readTempK();
