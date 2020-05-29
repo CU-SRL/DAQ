@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS parameters (
 
 -- Table of DAQ data
     -- parameter: name of parameter being logged, e.g., "P1" (foreign key from `parameters` table)
-    -- recording_id: unique identifier of the current recording, as input by the user (this is probably a terrible idea and I know that I should serialize this key instead)
+    -- recording_id: unique identifier of the current recording (rowid from entry in logs)
     -- t: timestamp (seconds)
     -- val: value being recorded, with any calibration factor applied
 CREATE TABLE IF NOT EXISTS daq (
@@ -20,6 +20,10 @@ CREATE TABLE IF NOT EXISTS daq (
     t INTEGER,
     val REAL,
     PRIMARY KEY(parameter,t));
+
+-- Table of log history
+CREATE TABLE IF NOT EXISTS logs (
+    title TEXT
 
 -- Clear out any content from these tables in case there's any data there
 DELETE FROM daq;
