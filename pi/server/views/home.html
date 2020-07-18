@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRL DAQ and Control</title>
+    <link rel="stylesheet" href="resources/bootstrap.css">
+    <script src="resources/jquery.js"></script>
+    <script src="resources/popper.js"></script>
+    <script src="resources/bootstrap.js"></script>
+    <script src="resources/chart.js"></script>
+    <script src="home.js"></script>
+
+    <style>
+        /* .plot-card {
+            margin-bottom: 20px;
+        } */
+
+        .nav-item {
+            margin: 10px
+        }
+    </style>
+</head>
+
+<body onload="initCharts()">
+    <div class="container">
+        <ul class="nav justify-content-end">
+            <li class="nav-item"><h3>System Control: </h3></li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-danger" href="#">Power Off</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-warning" href="#">Restart</button>
+            </li>
+        </ul>
+        <div class="jumbotron text-center">
+            <h1 class="display-4">
+                CU SRL Data Acquisition
+            </h1>
+        </div>
+        <hr>
+        <div class="contianer">
+            <h1>Logging Control</h1>
+            <div class="btn-group" role="group">
+                <button class="btn btn-success btn-lg">Start Logging</button>
+                <button class="btn btn-danger btn-lg" disabled>Stop Logging</button>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Load Cell</h1>
+                    <div class="card text-center">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" id="T1">69.69 N</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card plot-card">
+                        <canvas id="forceCanvas"></canvas>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <h1>Thermocouples</h1>
+                    <div class="card text-center">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" id="T1">69.69 K</li>
+                            <li class="list-group-item" id="T2">69.420 K</li>
+                            <li class="list-group-item" id="T3">420.69 K</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card plot-card">
+                        <canvas id="temperatureCanvas"></canvas>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <h1>Pressure Transducer</h1>
+                    <div class="card text-center">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" id="T1">69.69 kPa</li>
+                            <li class="list-group-item" id="T2">69.420 kPa</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card plot-card">
+                        <canvas id="pressureCanvas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="container" style="width:95%; margin:20px">
+            <div class="card overflow-auto" style="height:200px">
+                <div class="card-body" id="rawTextStream">
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
