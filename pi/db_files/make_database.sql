@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS parameters (
     -- val: value being recorded, with any calibration factor applied
 CREATE TABLE IF NOT EXISTS daq (
     parameter TEXT,
-    recording_id TEXT,
+    recording_id INTEGER,
     t INTEGER,
     val REAL,
     PRIMARY KEY(parameter,t));
