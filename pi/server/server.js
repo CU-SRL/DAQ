@@ -49,15 +49,43 @@ app.get('/download/log/:id', (req, res) => {
 // Post request handlers for serving/receiving data
 // --------------------------------------------------------------------
 
-app.post('/calibration', (req, res) => {
+app.post('/get-calibration', (req,res)=> {
+
+    // Initialize output object
+    var calibration
+
+    // TODO get calibration parameters and loop over them, pushing them to the object
+
+    res.JSON(calibration)
+
+})
+
+app.post('/set-calibration', (req, res) => {
 
     // Parse JSON
     const surveyData = JSON.parse(req.body.data)
 
 
+
 })
 
+// Return list of log files
 app.post('/enum-logs', (req, res) => {
+
+    if (getLoggingStatus()) {
+        // Get data and return it
+        /* 
+        Array of objects with properties:
+        - name
+        - duration
+        - downloadLink
+        */
+    }
+    else {
+        res.JSON({
+            "message": "Error: cannot get logs while system is acquiring data. Stop Acquisition to access log history."
+        })
+    }
 
 })
 
