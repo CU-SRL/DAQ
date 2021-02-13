@@ -4,6 +4,7 @@ import time
 import json
 import threading
 import socket
+import sys
 
 
 class pilotSide:
@@ -39,8 +40,6 @@ class pilotSide:
         for instance in buttonList:
             instance.btn.bind("<Button-1>", self.defaultHandler)
 
-
-
         self.frm1.pack(side = tk.LEFT)
 
 
@@ -54,7 +53,7 @@ class pilotSide:
             time.sleep(.1)
 
 
-class button():
+class button:
     def __init__(self, frame, buttonLabel):
         self.btn = tk.Button(
             master = frame,
@@ -71,29 +70,53 @@ class button():
 
 
 
-class pilotSideListen():
-
+class pilotSideListen:
 
     def __init__(self, pilotIP, pilotPORT, rocketIP, rocketPORT):
         self.listenSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.pilotAddress = (pilotIP, pilotPORT)
-        # self.rocketAddress = 
+        self.rocketAddress = (rocketIP, rocketPORT)
 
-    def __init__(self):
-        #open socket to lsiten on
-        pass
+        self.listenSocket.bind(self.pilotAddress)
 
-        
+    def run(self):
+        while True:
+            data = self.listenSocket.recv(1024)
+            print("Message recieved from rocket: %s" % data)
+            time.sleep(.4)
+
+
+class pilotSideTalk:
+    
+    def __init__(self, pilotIP, pilotPORT, rocketIP, rocketPORT):
+        self.talkSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.pilotAddress = (pilotIP, pilotPORT)
+        self.rocketAddress = (rocketIP, rocketPORT)
+
+    def run(self):
+        while True:
+            message = b"<message from pilot>"
+            self.talkSocket.sendto(message, socket.MSG_DONTWAIT, self.rocketAddress)
+            time.sleep(.5)
+           
+
+
+
+
+
 
 if __name__ == "__main__":
 
+    pilotTalk_obj = pilotSideTalk('127.0.0.1', 50000, '127.0.0.1', 50001)
+    pilotListen_obj = pilotSideListen('127.0.0.1', 50000, '127.0.0.1', 50001)
 
+    talkThread = threading.Thread(target=pilotTalk_obj.run)
+    talkThread.start()
 
+    listenThread = threading.Thread(target=pilotListen_obj.run)
+    listenThread.start()
 
-
-
-    thisSide = pilotSide()
-    thisSide.run() 
-
+    mainThread = pilotSide()
+    mainThread.run()
 
 

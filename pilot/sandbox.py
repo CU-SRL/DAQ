@@ -55,3 +55,17 @@ while True:
     # time.sleep(1)
 
     
+
+
+
+
+    # ! this one works
+
+    # def printTalking(self): #place holder function
+    #         lstng = "\rtalking"
+    #         elip = "."
+    #         for i in range(4):
+    #             sys.stdout.write(lstng + ((i) * elip))
+    #             time.sleep(1)
+    #             sys.stdout.write("\r             ") #line ends
+    #             sys.stdout.flush
