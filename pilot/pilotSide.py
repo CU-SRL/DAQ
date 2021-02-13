@@ -73,16 +73,15 @@ class button():
 
 class pilotSideListen():
 
-<<<<<<< HEAD
+
     def __init__(self, pilotIP, pilotPORT, rocketIP, rocketPORT):
         self.listenSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.pilotAddress = (pilotIP, pilotPORT)
-        self.rocketAddress = 
-=======
+        # self.rocketAddress = 
+
     def __init__(self):
         #open socket to lsiten on
         pass
->>>>>>> 10e3d3ded0d1678e4c543c6bffddb58660828d78
 
         
 
