@@ -2,18 +2,15 @@ import tkinter as tk
 import os
 import time
 import json
-
+import threading
+import socket
 
 
 class pilotSide:
 
-
     # ********* Button handler functions ************
     def defaultHandler(self, event):
         print("Epstien didn't kill himself")
-
-
-
 
 
     def __init__(self):
@@ -73,7 +70,22 @@ class button():
 
 
 
+
+class pilotSideListen():
+
+    def __init__(self):
+        #open socket to lsiten on
+        pass
+
+        
+
 if __name__ == "__main__":
+
+
+
+
+
+
     thisSide = pilotSide()
     thisSide.run() 
 
