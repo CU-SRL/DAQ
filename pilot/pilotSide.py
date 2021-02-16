@@ -13,6 +13,9 @@ class pilotSide:
     def defaultHandler(self, event):
         print("Epstien didn't kill himself")
 
+    def buttonInnactive(self, event):
+        print("button inactive")
+
 
     def __init__(self):
         self.window = tk.Tk()
@@ -43,11 +46,21 @@ class pilotSide:
         self.frm1.pack(side = tk.LEFT)
 
 
+    # 1 1111111 00000000 01010101 <-smbus2
+    # 1 1111111 01010101 <-ioctls
+
+    # def ingestJSON(filename):
+    #     Ian_pick_a_name_for_this = json.load(open("spiceShuttle.json"))
+        
+    #     # TODO: finish function
+    #     # TODO: create the format for the JSON file then run it by Spice Shuttle team lead
+
+    #     # ! Return useful python3 data structures of the information from the JSON
+
 
 # ************ Main function of main thread ************
     def run(self):
         while (True):
-            
             self.window.update()
             self.window.update_idletasks()
             time.sleep(.1)
@@ -86,6 +99,7 @@ class pilotSideListen:
             time.sleep(.4)
 
 
+
 class pilotSideTalk:
     
     def __init__(self, pilotIP, pilotPORT, rocketIP, rocketPORT):
@@ -96,7 +110,8 @@ class pilotSideTalk:
     def run(self):
         while True:
             message = b"<message from pilot>"
-            self.talkSocket.sendto(message, socket.MSG_DONTWAIT, self.rocketAddress)
+            # ! find some sort of non-blocking solution that works without MSG_DONTWAIT
+            self.talkSocket.sendto(message, self.rocketAddress)
             time.sleep(.5)
            
 

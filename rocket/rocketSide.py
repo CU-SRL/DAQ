@@ -5,6 +5,7 @@ import threading
 
 
 
+
 class rocketSideTalk(): 
     
     def __init__(self, pilotIP, pilotPORT, rocketIP, rocketPORT): #constructor
@@ -15,7 +16,8 @@ class rocketSideTalk():
     def run(self):
         while True:
             message = b"<message from rocket>"
-            self.talkSocket.sendto(message, socket.MSG_DONTWAIT, self.pilotAddress)
+            # ! find some sort of non-blocking solution that works without MSG_DONTWAIT
+            self.talkSocket.sendto(message, self.pilotAddress)
             time.sleep(.5)
 
 
@@ -27,6 +29,7 @@ class rocketSideListen():
         self.pilotAddress = (pilotIP, pilotPORT)
 
         self.listenSocket.bind(self.rocketAddress)
+
 
     def run(self):
         while True:
@@ -41,10 +44,10 @@ if __name__ == "__main__":
     rocketTalk_obj = rocketSideTalk('127.0.0.1', 50000, '127.0.0.1', 50001)
     rocketListen_obj = rocketSideListen('127.0.0.1', 50000, '127.0.0.1', 50001)
 
-    talkThread = threading.Thread(target=rocketTalk_obj.run())
+    talkThread = threading.Thread(target=rocketTalk_obj.run)
     talkThread.start()
 
-    listenThread = threading.Thread(target=rocketListen_obj.run())
+    listenThread = threading.Thread(target=rocketListen_obj.run)
     listenThread.start()
 
 
