@@ -2,18 +2,19 @@ import tkinter as tk
 import os
 import time
 import json
-
+import threading
+import socket
+import sys
 
 
 class pilotSide:
-
 
     # ********* Button handler functions ************
     def defaultHandler(self, event):
         print("Epstien didn't kill himself")
 
-
-
+    def buttonInnactive(self, event):
+        print("button inactive")
 
 
     def __init__(self):
@@ -42,22 +43,30 @@ class pilotSide:
         for instance in buttonList:
             instance.btn.bind("<Button-1>", self.defaultHandler)
 
-
-
         self.frm1.pack(side = tk.LEFT)
 
+
+    # 1 1111111 00000000 01010101 <-smbus2
+    # 1 1111111 01010101 <-ioctls
+
+    # def ingestJSON(filename):
+    #     Ian_pick_a_name_for_this = json.load(open("spiceShuttle.json"))
+        
+    #     # TODO: finish function
+    #     # TODO: create the format for the JSON file then run it by Spice Shuttle team lead
+
+    #     # ! Return useful python3 data structures of the information from the JSON
 
 
 # ************ Main function of main thread ************
     def run(self):
         while (True):
-            
             self.window.update()
             self.window.update_idletasks()
             time.sleep(.1)
 
 
-class button():
+class button:
     def __init__(self, frame, buttonLabel):
         self.btn = tk.Button(
             master = frame,
@@ -73,9 +82,56 @@ class button():
 
 
 
-if __name__ == "__main__":
-    thisSide = pilotSide()
-    thisSide.run() 
 
+class pilotSideListen:
+
+    def __init__(self, pilotIP, pilotPORT, rocketIP, rocketPORT):
+        self.listenSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.pilotAddress = (pilotIP, pilotPORT)
+        self.rocketAddress = (rocketIP, rocketPORT)
+
+        self.listenSocket.bind(self.pilotAddress)
+
+    def run(self):
+        while True:
+            data = self.listenSocket.recv(1024)
+            print("Message recieved from rocket: %s" % data)
+            time.sleep(.4)
+
+
+
+class pilotSideTalk:
+    
+    def __init__(self, pilotIP, pilotPORT, rocketIP, rocketPORT):
+        self.talkSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.pilotAddress = (pilotIP, pilotPORT)
+        self.rocketAddress = (rocketIP, rocketPORT)
+
+    def run(self):
+        while True:
+            message = b"<message from pilot>"
+            # ! find some sort of non-blocking solution that works without MSG_DONTWAIT
+            self.talkSocket.sendto(message, self.rocketAddress)
+            time.sleep(.5)
+           
+
+
+
+
+
+
+if __name__ == "__main__":
+
+    pilotTalk_obj = pilotSideTalk('127.0.0.1', 50000, '127.0.0.1', 50001)
+    pilotListen_obj = pilotSideListen('127.0.0.1', 50000, '127.0.0.1', 50001)
+
+    talkThread = threading.Thread(target=pilotTalk_obj.run)
+    talkThread.start()
+
+    listenThread = threading.Thread(target=pilotListen_obj.run)
+    listenThread.start()
+
+    mainThread = pilotSide()
+    mainThread.run()
 
 
