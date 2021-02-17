@@ -11,7 +11,7 @@ class pilotSide:
 
     # ********* Button handler functions ************
     def defaultHandler(self, event):
-        print("Epstien didn't kill himself")
+        print("Epstein didn't kill himself")
 
     def buttonInnactive(self, event):
         print("button inactive")
