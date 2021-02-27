@@ -1,21 +1,223 @@
 {
-    "numOfButtons" : 3,
-    
-    "buttons" : 
-    [
+    "devices": [
         {
-            "buttonLabel" : "bruhButton",
-            "buttonIndex" : 0
+            "name": "ADS1",
+            "purpose": "Thermocouples 0-3",
+            "type": "ADS1115Thermo",
+            "address": "0x48",
+            "gain": 16,
+            "scaleADCtoVoltage": 0.0078125,
+            "thermocouples":[
+                {
+                    "name": "Thermocouple 0",
+                    "purpose": "Chamber temp",
+                    "address": "0x48",
+                    "displayed": ["true", "false"]
+                },
+                {
+                    "name": "Thermocouple 1",
+                    "purpose": "",
+                    "address": "0x48",
+                    "displayed": ["true", "false"]
+                },
+                {
+                    "name": "Thermocouple 2",
+                    "purpose": "",
+                    "address": "0x48",
+                    "displayed": ["true", "false"]
+                },
+                {
+                    "name": "Thermocouple 3",
+                    "purpose": "",
+                    "address": "0x48",
+                    "displayed": ["true", "false"]
+                }
+            ]
         },
-
         {
-            "buttonLabel" : "Shplode rocket",
-            "buttonIndex" : 1
+            "name": "ADS2",
+            "purpose": "Thermocouples 4-7",
+            "type": "ADS1115Thermo",
+            "address": "0x49",
+            "gain": 16,
+            "scaleADCtoVoltage": 0.0078125,
+            "thermocouples":[
+                {
+                    "name": "Thermocouple 4",
+                    "purpose": "",
+                    "address": "0x49",
+                    "displayed": ["true", "false"]
+                },
+                {
+                    "name": "Thermocouple 5",
+                    "purpose": "",
+                    "address": "0x49",
+                    "displayed": ["true", "false"]
+                },
+                {
+                    "name": "Thermocouple 6",
+                    "purpose": "",
+                    "address": "0x49",
+                    "displayed": ["true", "false"]
+                },
+                {
+                    "name": "Thermocouple 7",
+                    "purpose": "",
+                    "address": "0x49",
+                    "displayed": ["true", "false"]
+                }
+            ]
         },
-
         {
-            "buttonLabel" : "Jeffery Epstein",
-            "buttonIndex" : 2
+            "name": "ADS3",
+            "purpose": "Transducers 0-3",
+            "type": "ADS1115Ducer",
+            "address": "0x4A",
+            "gain": 16,
+            "scaleADCtoVoltage": 0.0078125,
+            "transducers": [
+                {
+                    "name": "Transducer 0",
+                    "purpose": "Chamber pressure",
+                    "address": "0x4A",
+                    "range": "0-5000 psi",
+                    "scaleVoltagetoPressure": 500,
+                    "displayed": ["true","false"]
+                },
+                {
+                    "name": "Transducer 1",
+                    "purpose": "",
+                    "address": "0x4A",
+                    "range":"0-1000 psi",
+                    "scaleVoltagetoPressure": 100,
+                    "displayed": ["true","false"]
+                },
+                {
+                    "name": "Transducer 2",
+                    "purpose": "",
+                    "address": "0x4A",
+                    "range":"0-1000 psi",
+                    "scaleVoltagetoPressure": 100,
+                    "displayed": ["true","false"]
+                },
+                {
+                    "name": "Transducer 3",
+                    "purpose": "",
+                    "address": "0x4A",
+                    "range":"0-1000 psi",
+                    "scaleVoltagetoPressure": 100,
+                    "displayed": ["true","false"]
+                }
+            ]
+        },
+        {
+            "name": "ADS4",
+            "purpose": "Transducers 4-7",
+            "type": "ADS1115Ducer",
+            "address": "0x4B",
+            "gain": 16,
+            "scaleADCtoVoltage": 0.0078125,
+            "transducers": [
+                {
+                    "name": "Transducer 4",
+                    "purpose": "",
+                    "address": "0x4B",
+                    "range":"0-1000 psi",
+                    "scaleVoltagetoPressure": 100,
+                    "displayed": ["true","false"]
+                },
+                {
+                    "name": "Transducer 5",
+                    "purpose": "",
+                    "address": "0x4B",
+                    "range":"0-1000 psi",
+                    "scaleVoltagetoPressure": 100,
+                    "displayed": ["true","false"]
+                },
+                {
+                    "name": "Transducer 6",
+                    "purpose": "",
+                    "address": "0x4B",
+                    "range":"0-1000 psi",
+                    "scaleVoltagetoPressure": 100,
+                    "displayed": ["true","false"]
+                },
+                {
+                    "name": "Transducer 7",
+                    "purpose": "",
+                    "address": "0x4B",
+                    "range":"0-1000 psi",
+                    "scaleVoltagetoPressure": 100,
+                    "displayed": ["true","false"]
+                }
+            ]
+        },
+        {
+            "name": "LoadCellAmp",
+            "type": "HX711",
+            "Purpose": "Load cell",
+            "DOUT": 3,
+            "CLK": 2,
+            "loadCell": [
+                {
+                    "name": "Load cell",
+                    "scale": -1300
+                }
+            ]
+        },
+        {
+            "name": "ServoController",
+            "type": "PCA9685",
+            "purpose": "Servos",
+            "address": "0x40",
+            "servos": [
+                {
+                    "name": "Servo 0",
+                    "purpose": "",
+                    "channel": 0,
+                    "startPos": 0
+                },
+                {
+                    "name": "Servo 1",
+                    "purpose": "",
+                    "channel": 1,
+                    "startPos": 0
+                },
+                {
+                    "name": "Servo 2",
+                    "purpose": "",
+                    "channel": 2,
+                    "startPos": 0
+                },
+                {
+                    "name": "Servo 3",
+                    "purpose": "",
+                    "channel": 3,
+                    "startPos": 0
+                },
+                {
+                    "name": "Servo 4",
+                    "purpose": "",
+                    "channel": 4,
+                    "startPos": 0
+                },
+                {
+                    "name": "Servo 5",
+                    "purpose": "",
+                    "channel": 5,
+                    "startPos": 0
+                }
+            ]
+        }
+    ],
+    "buttons": [
+        {
+            "name": "Abort",
+            "state": ["active", "inactive"]
+        },
+        {
+            "name": "Start",
+            "state": ["active", "inactive"]
         }
     ]
 }
