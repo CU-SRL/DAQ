@@ -25,15 +25,21 @@ class pilotState(Enum):
 
 
 
-intitialSendConfig = pilotModule.sendConfig('127.0.0.1', 50000, '127.0.0.1', 50001, "pilotModule/spiceShuttle.json")
-intitialSendConfig.run()
 
 
-# currentState = pilotState.START_UP
 
-# if __name__ == "__main__":
+currentState = pilotState.START_UP
 
-#     if(currentState == pilotState.START_UP):
+if __name__ == "__main__":
+    while(True):
+
+        if(currentState == pilotState.START_UP):
+
+            intitialSendConfig = pilotModule.sendConfig('127.0.0.1', 50000, '127.0.0.1', 50001, "pilotModule/spiceShuttle.json")
+            goodStartintitialSendConfig.run()
+
+
+
         
 
 
