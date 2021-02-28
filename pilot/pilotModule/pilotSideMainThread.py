@@ -5,6 +5,7 @@ import json
 import threading
 import socket
 import sys
+from pilotModule.button import *
 
 class pilotSide:
     
@@ -26,11 +27,15 @@ class pilotSide:
             #TODO we need to fix this to according to Owen's spec that this is easy to read in high stress situations (req. 1.1)
 
         # ************ Button creation ************
-        buttonConfig = json.load(open("spiceShuttle.json"))
+        buttonConfig = json.load(open("pilotModule/spiceShuttle.json"))
         buttonList = []
-        for i in range(buttonConfig["numOfButtons"]):
-            buttonList.append(button(self.frm1, buttonConfig["buttons"][i]["buttonLabel"]))
+        # for i in range(buttonConfig["numOfButtons"]):
+        #     buttonList.append(button(self.frm1, buttonConfig["buttons"][i]["buttonLabel"]))
 
+        #TODO Ian put the config json stuff in here
+
+        for i in range(3):
+            buttonList.append(button(self.frm1, "bruh " + str(i)))
         # ************ Assign button handlers ************
             #! We will initialize the interface with some sort of "inactive" button handler
         for instance in buttonList:
