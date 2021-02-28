@@ -28,16 +28,24 @@ class pilotState(Enum):
 
 
 
-currentState = pilotState.START_UP
+currentState = pilotState.FIND_ROCKET
 
 if __name__ == "__main__":
     while(True):
 
-        if(currentState == pilotState.START_UP):
+        if(currentState == pilotState.FIND_ROCKET):
+
+            print("State 1 -- config with rocket")
 
             intitialSendConfig = pilotModule.sendConfig('127.0.0.1', 50000, '127.0.0.1', 50001, "pilotModule/spiceShuttle.json")
-            goodStartintitialSendConfig.run()
+            goodStart = intitialSendConfig.run()
 
+            currentState = pilotState.RUNNING
+
+
+        if(currentState == pilotState.RUNNING):
+
+            print("Running")
 
 
         
