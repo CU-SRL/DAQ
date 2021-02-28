@@ -40,13 +40,3 @@ class rocketSideListen():
             time.sleep(.4)
 
 
-if __name__ == "__main__":
-
-    rocketTalk_obj = rocketSideTalk('127.0.0.1', 50000, '127.0.0.1', 50001)
-    rocketListen_obj = rocketSideListen('127.0.0.1', 50000, '127.0.0.1', 50001)
-
-    talkThread = threading.Thread(target=rocketTalk_obj.run)
-    talkThread.start()
-
-    listenThread = threading.Thread(target=rocketListen_obj.run)
-    listenThread.start()
