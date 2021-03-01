@@ -7,12 +7,15 @@ Team Members: Carter Mak, Lyon Foster
 """
 
 import threading
+import time
 import queue
 
 """Collected functionality for hypervisor thread execution
 
 Can be inherited and the threadRun() method can be overwritten
 """
+
+
 
 
 class Hypervisor:
@@ -23,5 +26,7 @@ class Hypervisor:
 
     def threadRun(self):
         # TODO Do the things
-        print('Hypervisor thread executing')
-        return
+        while(True):
+            print('Hypervisor thread executing')
+            time.sleep(1)
+

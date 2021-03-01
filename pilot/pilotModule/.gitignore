@@ -1,3 +1,9 @@
+__pycache__/**
+__pycache__/
+*.pyc
+*.pyo
+
+
 # Prerequisites
 *.d
 
@@ -51,7 +57,3 @@ DAQ Schematics/__Previews
 
 # Database  files
 *.db
-
-# Any pycache files
-**/__pycache__/**
-
