@@ -1,0 +1,24 @@
+{
+    "commands": [
+        {
+            "id": 0,
+            "name": "scramble",
+            "arguments": []
+        },
+        {
+            "id": 1,
+            "name": "set servo value",
+            "arguments": [
+                "servo_id",
+                "value"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "start script",
+            "arguments": [
+                "script_name"
+            ]
+        }
+    ]
+}
