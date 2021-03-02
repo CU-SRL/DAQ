@@ -6,7 +6,7 @@ import time
 import json
 import socket
 import sys
-from enum import Enum
+from enum import IntEnum
 
 # Instantiate all queues
 sensorQueue = queue.Queue()
@@ -14,7 +14,7 @@ tlmQueue = queue.Queue()
 cmdQueue = queue.Queue()
 # TODO Define rest of the queue objects
 
-class rocketState(Enum):
+class rocketState(IntEnum):
     START_UP      = 1
     GET_CONFIG    = 2
     START_LISTEN  = 3

@@ -9,6 +9,15 @@ def ingestJSON(filename):
     return spiceShuttleJSON
 
 
-# spiceShuttleDict = ingestJSON('spiceShuttle.json')
+configJSON = ingestJSON('pilotModule/spiceShuttle.json')
 
-# print([spiceShuttleDict['devices'][i]['address'] for i in range(len(spiceShuttleDict['devices'])) if spiceShuttleDict['devices'][i]['type'] == 'ADS1115Ducer'])
+dataLabels_list = []
+for i in range(len(configJSON["devices"])):
+
+    for j in range(len(configJSON["devices"][i])):
+
+        print(configJSON["devices"][i]["name"])
+
+
+# print(dataLabels_list)
+

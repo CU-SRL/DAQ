@@ -212,7 +212,7 @@
     ],
     "buttons": [
         {
-            "name": "Abort",
+            "name": "Scramble",
             "state": ["active", "inactive"]
         },
         {

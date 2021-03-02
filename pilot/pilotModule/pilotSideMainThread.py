@@ -5,8 +5,9 @@ import json
 import threading
 import socket
 import sys
-from pilotModule.button import *
-
+import pilotModule.button as buttonModule
+import pilotModule.telemetryDisplay as telemetryDisplayModule
+import pilotModule.JSONParsing as JSONParsing
 class pilotSide:
     
     # ********* Button handler functions ************
@@ -20,28 +21,30 @@ class pilotSide:
     def __init__(self):
         self.window = tk.Tk()
         self.frm1 = tk.Frame()
+        self.frm2 = tk.Frame()
 
 
-        #TODO (TICKET 2) fix button background color for MAC
-            #TODO currently all buttons have a white background for MAC
-            #TODO we need to fix this to according to Owen's spec that this is easy to read in high stress situations (req. 1.1)
+        # ************ Loaded Dictionary ************
+        configJSON = JSONParsing.ingestJSON("pilotModule/spiceShuttle.json")
 
         # ************ Button creation ************
-        buttonConfig = json.load(open("pilotModule/spiceShuttle.json"))
-        buttonList = []
-        # for i in range(buttonConfig["numOfButtons"]):
-        #     buttonList.append(button(self.frm1, buttonConfig["buttons"][i]["buttonLabel"]))
+        buttonName_list = []
+        for i in range(len(configJSON["buttons"])):
+            buttonName_list.append(buttonModule.button(self.frm1,configJSON["buttons"][i]["name"]))
 
-        #TODO Ian put the config json stuff in here
-
-        for i in range(3):
-            buttonList.append(button(self.frm1, "bruh " + str(i)))
-        # ************ Assign button handlers ************
             #! We will initialize the interface with some sort of "inactive" button handler
-        for instance in buttonList:
+        for instance in buttonName_list:
             instance.btn.bind("<Button-1>", self.defaultHandler)
 
+        # ************ Data Display ************
+        dataLabels_list = []
+
+        for i in range(10):
+            dataLabels_list.append(telemetryDisplayModule.telemetryDisplay(self.frm2,"Cheems Baby!\nbruh\n\n"))
+
+
         self.frm1.pack(side = tk.LEFT)
+        self.frm2.pack(side = tk.RIGHT)
 
 
         
