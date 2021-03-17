@@ -1,0 +1,231 @@
+{
+    "inputs": 
+    [
+        {
+            "name": "thermocouple0",
+            "type": "ADS1115Thermo",
+            "address": "0x48",
+            "channel": 0,
+            "gain": 16,
+            "scaleADCtoVoltage": 0.0078125,
+            "purpose": "Chamber temp"
+        },
+        {
+            "name": "thermocouple1",
+            "type": "ADS1115Thermo",
+            "address": "0x48",
+            "channel": 1,
+            "scaleADCtoVoltage": 0.0078125,
+            "purpose": "Fuel injector temp"
+        },
+        {
+            "name": "thermocouple2",
+            "type": "ADS1115Thermo",
+            "address": "0x48",
+            "channel": 2,
+            "scaleADCtoVoltage": 0.0078125,
+            "purpose": "LOX injector temp"
+        },
+        {
+            "name": "thermocouple3",
+            "type": "ADS1115Thermo",
+            "address": "0x48",
+            "channel": 3,
+            "scaleADCtoVoltage": 0.0078125,
+            "purpose": "N/A"
+        },
+        {
+            "name": "thermocouple4",
+            "type": "ADS1115Thermo",
+            "address": "0x49",
+            "channel": 0,
+            "scaleADCtoVoltage": 0.0078125,
+            "purpose": "N/A"
+        },
+        {
+            "name": "thermocouple5",
+            "type": "ADS1115Thermo",
+            "address": "0x49",
+            "channel": 1,
+            "scaleADCtoVoltage": 0.0078125,
+            "purpose": "N/A"
+        },
+        {
+            "name": "thermocouple6",
+            "type": "ADS1115Thermo",
+            "address": "0x49",
+            "channel": 2,
+            "scaleADCtoVoltage": 0.0078125,
+            "purpose": "N/A"
+        },
+        {
+            "name": "thermocouple7",
+            "type": "ADS1115Thermo",
+            "address": "0x49",
+            "channel": 3,
+            "scaleADCtoVoltage": 0.0078125,
+            "purpose": "N/A"
+        },
+        {
+            "name": "transducer0",
+            "type": "ADS1115Ducer",
+            "address": "0x4A",
+            "channel": 0,
+            "gain": 16,
+            "scaleADCtoVoltage": 0.0078125,
+            "scaleVoltagetoPressure": 500,
+            "range": "0-5000 psi",
+            "purpose": "Fuel tank pressure"
+        },
+        {
+            "name": "transducer1",
+            "type": "ADS1115Ducer",
+            "address": "0x4A",
+            "channel": 1,
+            "gain": 16,
+            "scaleADCtoVoltage": 0.0078125,
+            "scaleVoltagetoPressure": 100,
+            "range":"0-1000 psi",
+            "purpose": "LOX tank pressure"
+        },
+        {
+            "name": "transducer2",
+            "type": "ADS1115Ducer",
+            "address": "0x4A",
+            "channel": 2,
+            "gain": 16,
+            "scaleADCtoVoltage": 0.0078125,
+            "scaleVoltagetoPressure": 100,
+            "range":"0-1000 psi",
+            "purpose": "Chamber pressure"
+        },
+        {
+            "name": "transducer3",
+            "type": "ADS1115Ducer",
+            "address": "0x4A",
+            "channel": 3,
+            "gain": 16,
+            "scaleADCtoVoltage": 0.0078125,
+            "scaleVoltagetoPressure": 100,
+            "range":"0-1000 psi",
+            "purpose": "Fuel injector pressure"
+        },
+        {
+            "name": "transducer4",
+            "type": "ADS1115Ducer",
+            "address": "0x4B",
+            "channel": 0,
+            "gain": 16,
+            "scaleADCtoVoltage": 0.0078125,
+            "scaleVoltagetoPressure": 100,
+            "range":"0-1000 psi",
+            "purpose": "LOX injector pressure"
+        },
+        {
+            "name": "transducer5",
+            "type": "ADS1115Ducer",
+            "address": "0x4B",
+            "channel": 1,
+            "gain": 16,
+            "scaleADCtoVoltage": 0.0078125,
+            "scaleVoltagetoPressure": 100,
+            "range":"0-1000 psi",
+            "purpose": "N/A"
+        },
+        {
+            "name": "transducer6",
+            "type": "ADS1115Ducer",
+            "address": "0x4B",
+            "channel": 2,
+            "gain": 16,
+            "scaleADCtoVoltage": 0.0078125,
+            "scaleVoltagetoPressure": 100,
+            "range":"0-1000 psi",
+            "purpose": "N/A"
+        },
+        {
+            "name": "transducer7",
+            "type": "ADS1115Ducer",
+            "address": "0x4B",
+            "channel": 3,
+            "gain": 16,
+            "scaleADCtoVoltage": 0.0078125,
+            "scaleVoltagetoPressure": 100,
+            "range":"0-1000 psi",
+            "purpose": "N/A"
+        },
+        {
+            "name": "loadCell",
+            "type": "HX711",
+            "address": "N/A",
+            "DOUT": 3,
+            "CLK": 2,
+            "gain": 32,
+            "scale": -1300,
+            "purpose": "Load cell"
+        }
+    ],
+    "outputs":
+    [
+        {
+            "name": "servo0",
+            "type": "PCA9685",
+            "address": "0x40",
+            "channel": 0,
+            "startPos": 0,
+            "partialOpen": 45,
+            "fullOpen": 90,
+            "purpose": "Fuel valve"
+        },
+        {
+            "name": "servo1",
+            "type": "PCA9685",
+            "address": "0x40",
+            "channel": 1,
+            "startPos": 0,
+            "partialOpen": 45,
+            "fullOpen": 90,
+            "purpose": "LOX valve"
+        },
+        {
+            "name": "servo2",
+            "type": "PCA9685",
+            "address": "0x40",
+            "channel": 2,
+            "startPos": 0,
+            "partialOpen": 45,
+            "fullOpen": 90,
+            "purpose": "Something"
+        },
+        {
+            "name": "servo3",
+            "type": "PCA9685",
+            "address": "0x40",
+            "channel": 3,
+            "startPos": 0,
+            "partialOpen": 45,
+            "fullOpen": 90,
+            "purpose": "Something"
+        },
+        {
+            "name": "servo4",
+            "type": "PCA9685",
+            "address": "0x40",
+            "channel": 4,
+            "startPos": 0,
+            "partialOpen": 45,
+            "fullOpen": 90,
+            "purpose": "Something"
+        },
+        {
+            "name": "servo5",
+            "type": "PCA9685",
+            "address": "0x40",
+            "channel": 5,
+            "startPos": 0,
+            "partialOpen": 45,
+            "fullOpen": 90,
+            "purpose": "Something"
+        }
+    ]
+}
