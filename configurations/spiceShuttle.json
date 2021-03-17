@@ -1,271 +1,284 @@
 {
-    "devices": [
+    "devices": 
+    [ 
         {
-            "name": "ADS1",
-            "purpose": "Thermocouples 0-3",
-            "type": "ADS1115Thermo",
-            "class": "input",
-            "address": "0x48",
-            "gain": 16,
-            "scaleADCtoVoltage": 0.0078125,
-            "thermocouples":[
+            "inputs": 
+            [
                 {
-                    "name": "Thermocouple 0",
-                    "purpose": "Chamber temp",
+                    "name": "ADS1",
+                    "purpose": "Thermocouples 0-3",
+                    "type": "ADS1115Thermo",
                     "address": "0x48",
-                    "displayed": ["true", "false"]
+                    "gain": 16,
+                    "scaleADCtoVoltage": 0.0078125,
+                    "thermocouples":
+                    [
+                        {
+                            "name": "thermocouple0",
+                            "purpose": "Chamber temp",
+                            "channel": 0,
+                            "displayed": ["true", "false"]
+                        },
+                        {
+                            "name": "thermocouple1",
+                            "purpose": "Fuel injector temp",
+                            "channel": 1,
+                            "displayed": ["true", "false"]
+                        },
+                        {
+                            "name": "thermocouple2",
+                            "purpose": "LOX injector temp",
+                            "channel": 2,
+                            "displayed": ["true", "false"]
+                        },
+                        {
+                            "name": "thermocouple3",
+                            "purpose": "N/A",
+                            "channel": 3,
+                            "displayed": ["true", "false"]
+                        }
+                    ]
                 },
                 {
-                    "name": "Thermocouple 1",
-                    "purpose": "Fuel injector temp",
-                    "address": "0x48",
-                    "displayed": ["true", "false"]
-                },
-                {
-                    "name": "Thermocouple 2",
-                    "purpose": "LOX injector temp",
-                    "address": "0x48",
-                    "displayed": ["true", "false"]
-                },
-                {
-                    "name": "Thermocouple 3",
-                    "purpose": "N/A",
-                    "address": "0x48",
-                    "displayed": ["true", "false"]
-                }
-            ]
-        },
-        {
-            "name": "ADS2",
-            "purpose": "Thermocouples 4-7",
-            "type": "ADS1115Thermo",
-            "class": "input",
-            "address": "0x49",
-            "gain": 16,
-            "scaleADCtoVoltage": 0.0078125,
-            "thermocouples":[
-                {
-                    "name": "Thermocouple 4",
-                    "purpose": "N/A",
+                    "name": "ADS2",
+                    "purpose": "Thermocouples 4-7",
+                    "type": "ADS1115Thermo",
                     "address": "0x49",
-                    "displayed": ["true", "false"]
+                    "gain": 16,
+                    "scaleADCtoVoltage": 0.0078125,
+                    "thermocouples":
+                    [
+                        {
+                            "name": "thermocouple4",
+                            "purpose": "N/A",
+                            "channel": 0,
+                            "displayed": ["true", "false"]
+                        },
+                        {
+                            "name": "thermocouple5",
+                            "purpose": "N/A",
+                            "channel": 1,
+                            "displayed": ["true", "false"]
+                        },
+                        {
+                            "name": "thermocouple6",
+                            "purpose": "N/A",
+                            "channel": 2,
+                            "displayed": ["true", "false"]
+                        },
+                        {
+                            "name": "thermocouple7",
+                            "purpose": "N/A",
+                            "channel": 3,
+                            "displayed": ["true", "false"]
+                        }
+                    ]
                 },
                 {
-                    "name": "Thermocouple 5",
-                    "purpose": "N/A",
-                    "address": "0x49",
-                    "displayed": ["true", "false"]
-                },
-                {
-                    "name": "Thermocouple 6",
-                    "purpose": "N/A",
-                    "address": "0x49",
-                    "displayed": ["true", "false"]
-                },
-                {
-                    "name": "Thermocouple 7",
-                    "purpose": "N/A",
-                    "address": "0x49",
-                    "displayed": ["true", "false"]
-                }
-            ]
-        },
-        {
-            "name": "ADS3",
-            "purpose": "Transducers 0-3",
-            "type": "ADS1115Ducer",
-            "class": "input",
-            "address": "0x4A",
-            "gain": 16,
-            "scaleADCtoVoltage": 0.0078125,
-            "transducers": [
-                {
-                    "name": "Transducer 0",
-                    "purpose": "Fuel tank pressure",
+                    "name": "ADS3",
+                    "purpose": "Transducers 0-3",
+                    "type": "ADS1115Ducer",
                     "address": "0x4A",
-                    "range": "0-5000 psi",
-                    "scaleVoltagetoPressure": 500,
-                    "displayed": ["true","false"]
+                    "gain": 16,
+                    "scaleADCtoVoltage": 0.0078125,
+                    "transducers": 
+                    [
+                        {
+                            "name": "transducer0",
+                            "purpose": "Fuel tank pressure",
+                            "channel": 0,
+                            "range": "0-5000 psi",
+                            "scaleVoltagetoPressure": 500,
+                            "displayed": ["true","false"]
+                        },
+                        {
+                            "name": "transducer1",
+                            "purpose": "LOX tank pressure",
+                            "channel": 1,
+                            "range":"0-1000 psi",
+                            "scaleVoltagetoPressure": 100,
+                            "displayed": ["true","false"]
+                        },
+                        {
+                            "name": "transducer2",
+                            "purpose": "Chamber pressure",
+                            "channel": 2,
+                            "range":"0-1000 psi",
+                            "scaleVoltagetoPressure": 100,
+                            "displayed": ["true","false"]
+                        },
+                        {
+                            "name": "transducer3",
+                            "purpose": "Fuel injector pressure",
+                            "channel": 3,
+                            "range":"0-1000 psi",
+                            "scaleVoltagetoPressure": 100,
+                            "displayed": ["true","false"]
+                        }
+                    ]
                 },
                 {
-                    "name": "Transducer 1",
-                    "purpose": "LOX tank pressure",
-                    "address": "0x4A",
-                    "range":"0-1000 psi",
-                    "scaleVoltagetoPressure": 100,
-                    "displayed": ["true","false"]
+                    "name": "ADS4",
+                    "purpose": "Transducers 4-7",
+                    "type": "ADS1115Ducer",
+                    "address": "0x4B",
+                    "gain": 16,
+                    "scaleADCtoVoltage": 0.0078125,
+                    "transducers": 
+                    [
+                        {
+                            "name": "transducer4",
+                            "purpose": "LOX injector pressure",
+                            "channel": 0,
+                            "range":"0-1000 psi",
+                            "scaleVoltagetoPressure": 100,
+                            "displayed": ["true","false"]
+                        },
+                        {
+                            "name": "transducer5",
+                            "purpose": "N/A",
+                            "channel": 1,
+                            "range":"0-1000 psi",
+                            "scaleVoltagetoPressure": 100,
+                            "displayed": ["true","false"]
+                        },
+                        {
+                            "name": "transducer6",
+                            "purpose": "N/A",
+                            "channel": 2,
+                            "range":"0-1000 psi",
+                            "scaleVoltagetoPressure": 100,
+                            "displayed": ["true","false"]
+                        },
+                        {
+                            "name": "transducer7",
+                            "purpose": "N/A",
+                            "channel": 3,
+                            "range":"0-1000 psi",
+                            "scaleVoltagetoPressure": 100,
+                            "displayed": ["true","false"]
+                        }
+                    ]
                 },
                 {
-                    "name": "Transducer 2",
-                    "purpose": "Chamber pressure",
-                    "address": "0x4A",
-                    "range":"0-1000 psi",
-                    "scaleVoltagetoPressure": 100,
-                    "displayed": ["true","false"]
-                },
-                {
-                    "name": "Transducer 3",
-                    "purpose": "Fuel injector pressure",
-                    "address": "0x4A",
-                    "range":"0-1000 psi",
-                    "scaleVoltagetoPressure": 100,
-                    "displayed": ["true","false"]
+                    "name": "LoadCellAmp",
+                    "purpose": "Load cell",
+                    "type": "HX711",
+                    "address": "N/A",
+                    "gain": 32,
+                    "scaleADCtoVoltage": "N/A",
+                    "DOUT": 3,
+                    "CLK": 2,
+                    "loadCell": 
+                    [
+                        {
+                            "name": "loadCell",
+                            "scale": -1300
+                        }
+                    ]
                 }
-            ]
-        },
-        {
-            "name": "ADS4",
-            "purpose": "Transducers 4-7",
-            "type": "ADS1115Ducer",
-            "class": "input",
-            "address": "0x4B",
-            "gain": 16,
-            "scaleADCtoVoltage": 0.0078125,
-            "transducers": [
+            ],
+            "outputs": 
+            [
                 {
-                    "name": "Transducer 4",
-                    "purpose": "LOX injector pressure",
-                    "address": "0x4B",
-                    "range":"0-1000 psi",
-                    "scaleVoltagetoPressure": 100,
-                    "displayed": ["true","false"]
-                },
-                {
-                    "name": "Transducer 5",
-                    "purpose": "N/A",
-                    "address": "0x4B",
-                    "range":"0-1000 psi",
-                    "scaleVoltagetoPressure": 100,
-                    "displayed": ["true","false"]
-                },
-                {
-                    "name": "Transducer 6",
-                    "purpose": "N/A",
-                    "address": "0x4B",
-                    "range":"0-1000 psi",
-                    "scaleVoltagetoPressure": 100,
-                    "displayed": ["true","false"]
-                },
-                {
-                    "name": "Transducer 7",
-                    "purpose": "N/A",
-                    "address": "0x4B",
-                    "range":"0-1000 psi",
-                    "scaleVoltagetoPressure": 100,
-                    "displayed": ["true","false"]
-                }
-            ]
-        },
-        {
-            "name": "LoadCellAmp",
-            "purpose": "Load cell",
-            "type": "HX711",
-            "class": "input",
-            "DOUT": 3,
-            "CLK": 2,
-            "loadCell": [
-                {
-                    "name": "Load cell",
-                    "scale": -1300
-                }
-            ]
-        },
-        {
-            "name": "ServoController",
-            "purpose": "Servos",
-            "type": "PCA9685",
-            "class": "output",
-            "address": "0x40",
-            "servos": [
-                {
-                    "name": "Servo 0",
-                    "purpose": "Fuel valve",
-                    "channel": 0,
-                    "startPos": 0,
-                    "partialOpen": 45,
-                    "fullOpen": 90
-                },
-                {
-                    "name": "Servo 1",
-                    "purpose": "LOX valve",
-                    "channel": 1,
-                    "startPos": 0,
-                    "partialOpen": 45,
-                    "fullOpen": 90
-                },
-                {
-                    "name": "Servo 2",
-                    "purpose": "",
-                    "channel": 2,
-                    "startPos": 0,
-                    "partialOpen": 45,
-                    "fullOpen": 90
-                },
-                {
-                    "name": "Servo 3",
-                    "purpose": "",
-                    "channel": 3,
-                    "startPos": 0,
-                    "partialOpen": 45,
-                    "fullOpen": 90
-                },
-                {
-                    "name": "Servo 4",
-                    "purpose": "",
-                    "channel": 4,
-                    "startPos": 0,
-                    "partialOpen": 45,
-                    "fullOpen": 90
-                },
-                {
-                    "name": "Servo 5",
-                    "purpose": "",
-                    "channel": 5,
-                    "startPos": 0,
-                    "partialOpen": 45,
-                    "fullOpen": 90
+                    "name": "ServoController",
+                    "purpose": "Servos",
+                    "type": "PCA9685",
+                    "address": "0x40",
+                    "servos": 
+                    [
+                        {
+                            "name": "servo0",
+                            "purpose": "Fuel valve",
+                            "channel": 0,
+                            "startPos": 0,
+                            "partialOpen": 45,
+                            "fullOpen": 90
+                        },
+                        {
+                            "name": "servo1",
+                            "purpose": "LOX valve",
+                            "channel": 1,
+                            "startPos": 0,
+                            "partialOpen": 45,
+                            "fullOpen": 90
+                        },
+                        {
+                            "name": "servo2",
+                            "purpose": "",
+                            "channel": 2,
+                            "startPos": 0,
+                            "partialOpen": 45,
+                            "fullOpen": 90
+                        },
+                        {
+                            "name": "servo3",
+                            "purpose": "",
+                            "channel": 3,
+                            "startPos": 0,
+                            "partialOpen": 45,
+                            "fullOpen": 90
+                        },
+                        {
+                            "name": "servo4",
+                            "purpose": "",
+                            "channel": 4,
+                            "startPos": 0,
+                            "partialOpen": 45,
+                            "fullOpen": 90
+                        },
+                        {
+                            "name": "servo5",
+                            "purpose": "",
+                            "channel": 5,
+                            "startPos": 0,
+                            "partialOpen": 45,
+                            "fullOpen": 90
+                        }
+                    ]
                 }
             ]
         }
     ],
-    "buttons": [
+    "buttons": 
+    [
         {
-            "name": "Scramble",
+            "name": "scramble",
             "purpose": "Emergency stop",
             "state": ["active", "inactive"]
         },
         {
-            "name": "Start",
+            "name": "start",
             "purpose": "Start data collection",
             "state": ["active", "inactive"]
         },
         {
-            "name": "Fuel valve partial open",
+            "name": "fuelValvePartialOpen",
             "purpose": "Partially open the fuel valve",
             "state": ["active", "inactive"]
         },
         {
-            "name": "LOX valve partial open",
+            "name": "loxValvePartialOpen",
             "purpose": "Partially open the LOX valve",
             "state": ["active", "inactive"]
         },
         {
-            "name": "Fuel valve full open",
+            "name": "fuelValveFullOpen",
             "purpose": "Fully open the fuel valve",
             "state": ["active", "inactive"]
         },
         {
-            "name": "LOX valve full open",
+            "name": "loxValveFullOpen",
             "purpose": "Fully open the LOX valve",
             "state": ["active", "inactive"]
         },
         {
-            "name": "Fuel/LOX valves partial open",
+            "name": "fuelLoxValvesPartialOpen",
             "purpose": "Partially open the fuel and LOX valves",
             "state": ["active", "inactive"]
         },
         {
-            "name": "Fuel/LOX valves full open",
+            "name": "fuelLoxValvesFullOpen",
             "purpose": "Fully open the fuel and LOX valves",
             "state": ["active", "inactive"]
         }
