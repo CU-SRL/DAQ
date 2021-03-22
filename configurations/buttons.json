@@ -1,0 +1,42 @@
+[
+    {
+        "name": "scramble",
+        "purpose": "Emergency stop",
+        "state": ["active", "inactive"]
+    },
+    {
+        "name": "start",
+        "purpose": "Start data collection",
+        "state": ["active", "inactive"]
+    },
+    {
+        "name": "fuelValvePartialOpen",
+        "purpose": "Partially open the fuel valve",
+        "state": ["active", "inactive"]
+    },
+    {
+        "name": "loxValvePartialOpen",
+        "purpose": "Partially open the LOX valve",
+        "state": ["active", "inactive"]
+    },
+    {
+        "name": "fuelValveFullOpen",
+        "purpose": "Fully open the fuel valve",
+        "state": ["active", "inactive"]
+    },
+    {
+        "name": "loxValveFullOpen",
+        "purpose": "Fully open the LOX valve",
+        "state": ["active", "inactive"]
+    },
+    {
+        "name": "fuelLoxValvesPartialOpen",
+        "purpose": "Partially open the fuel and LOX valves",
+        "state": ["active", "inactive"]
+    },
+    {
+        "name": "fuelLoxValvesFullOpen",
+        "purpose": "Fully open the fuel and LOX valves",
+        "state": ["active", "inactive"]
+    }
+]
