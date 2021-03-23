@@ -5,7 +5,7 @@ import json
 import threading
 import socket
 import sys
-from enum import Enum 
+from enum import Enum
 
 import pilotModule 
 
@@ -19,9 +19,6 @@ class pilotState(Enum):
     START_TALK    = 4
     START_UI      = 5
     RUNNING       = 6
-
-
-    
 
 
 

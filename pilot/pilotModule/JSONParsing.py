@@ -1,4 +1,6 @@
 import json
+import os
+import pathlib
 
 class Configuration():
 
@@ -87,36 +89,55 @@ class Configuration():
 
 # INCLUDE THIS BLOCK OF CODE TO INGEST JSON, CHANGE FILE PATHING AS NECESSARY
 
-IOConfig = Configuration('c:/Users/ianmf/Documents/SRLDAQRepo/configurations/IO.json') #Create an input/output configuration object based on the IO.json file
-buttonConfig = Configuration('c:/Users/ianmf/Documents/SRLDAQRepo/configurations/buttons.json') #Create a button configuration object based on the buttons.json file
 
-IOConfig.ingestJSON("IO")
-IOConfig.run()
-buttonConfig.ingestJSON("buttons")
-buttonConfig.run()
+
+# IOConfig = Configuration(os.path.join(os.path.dirname( __file__ ), '..','..','configurations','IO.json'))
+# buttonConfig = Configuration(os.path.join(os.path.dirname( __file__ ), '..','..','configurations','IO.json'))
+
+
+# # ! old stuff for Ian's computer. Should be fine without it now
+# #// IOConfig = Configuration('c:/Users/ianmf/Documents/SRLDAQRepo/configurations/IO.json') #Create an input/output configuration object based on the IO.json file
+# #//  buttonConfig = Configuration('c:/Users/ianmf/Documents/SRLDAQRepo/configurations/buttons.json') #Create a button configuration object based on the buttons.json file
+
+# IOConfig.ingestJSON("IO")
+# IOConfig.run()
+# buttonConfig.ingestJSON("buttons")
+# buttonConfig.run()
 
 # END OF NECESSARY CODE
 
-for i in range(len(IOConfig.thermocoupleDict)):
-    print(IOConfig.thermocoupleDict[i]['name'])
 
-for i in range(len(IOConfig.ducerDict)):
-    print(IOConfig.ducerDict[i]['name'])
+if __name__ == "__main__":
 
-for i in range(len(IOConfig.loadCellDict)):
-    print(IOConfig.loadCellDict[i]['name'])
+    IOConfig = Configuration(os.path.join(os.path.dirname( __file__ ),'..','..','configurations','IO.json'))
+    buttonConfig = Configuration(os.path.join(os.path.dirname( __file__ ),'..','..','configurations','buttons.json'))
 
-for i in range(len(IOConfig.servoDict)):
-    print(IOConfig.servoDict[i]['name'])
+    IOConfig.ingestJSON("IO")
+    IOConfig.run()
+    buttonConfig.ingestJSON("buttons")
+    buttonConfig.run()
 
-for i in range(len(buttonConfig.buttonDict)):
-    print(buttonConfig.buttonDict[i]['name'])
 
-# print([spiceShuttleDict['devices'][i]['address'] for i in range(len(spiceShuttleDict['devices'])) if spiceShuttleDict['devices'][i]['type'] == 'ADS1115Ducer'])
-# from sys import platform
-# if platform == "linux" or platform == "linux2":
-#     # linux
-# elif platform == "darwin":
-#     # OS X
-# elif platform == "win32":
-#     # Windows...
+    for i in range(len(IOConfig.thermocoupleDict)):
+        print(IOConfig.thermocoupleDict[i]['name'])
+
+    for i in range(len(IOConfig.ducerDict)):
+        print(IOConfig.ducerDict[i]['name'])
+
+    for i in range(len(IOConfig.loadCellDict)):
+        print(IOConfig.loadCellDict[i]['name'])
+
+    for i in range(len(IOConfig.servoDict)):
+        print(IOConfig.servoDict[i]['name'])
+
+    for i in range(len(buttonConfig.buttonDict)):
+        print(buttonConfig.buttonDict[i]['name'])
+
+else:
+    IOConfig = Configuration(os.path.join(os.path.dirname( __file__ ), '..','..','configurations','IO.json'))
+    buttonConfig = Configuration(os.path.join(os.path.dirname( __file__ ), '..','..','configurations','buttons.json'))
+
+    IOConfig.ingestJSON("IO")
+    IOConfig.run()
+    buttonConfig.ingestJSON("buttons")
+    buttonConfig.run()
