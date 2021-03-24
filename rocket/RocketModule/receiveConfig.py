@@ -41,6 +41,9 @@ class recieveConfig():
 
 
                     self.initialRecvSocket.close()
+                    print("here is what the rocket received on handshake")
+                    print(data)
+		    	  
                     return data
             else:
                 print("Attempted connection from non-pilot address")

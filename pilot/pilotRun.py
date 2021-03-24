@@ -5,14 +5,14 @@ import json
 import threading
 import socket
 import sys
-from enum import Enum
+from enum import IntEnum
 
-import pilotModule 
-
-
+from pilotModule import *
 
 
-class pilotState(Enum):
+
+
+class pilotState(IntEnum):
     START_UP      = 1
     FIND_ROCKET   = 2
     START_LISTEN  = 3
@@ -32,9 +32,12 @@ if __name__ == "__main__":
 
         if(currentState == pilotState.FIND_ROCKET):
 
-            print("State ", pilotState.FIND_ROCKET, " -- Find Rocket")
+            print("State ", int(pilotState.FIND_ROCKET), " -- Find Rocket")
 
-            intitialSendConfig = pilotModule.sendConfig('127.0.0.1', 50000, '127.0.0.1', 50001, "pilotModule/spiceShuttle.json")
+            #This pulls the filename member from the JSONParsing Configuration class so I don't have to do more file path nonsense
+            configFileName = JSONParsing.IOConfig.filename
+
+            intitialSendConfig = pilotModule.sendConfig('127.0.0.1', 50000, '127.0.0.1', 50001, configFileName)
             goodStart = intitialSendConfig.run()
 
             currentState = pilotState.START_LISTEN

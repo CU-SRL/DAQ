@@ -134,6 +134,8 @@ if __name__ == "__main__":
         print(buttonConfig.buttonDict[i]['name'])
 
 else:
+
+    print("JSON Has been parsed")
     IOConfig = Configuration(os.path.join(os.path.dirname( __file__ ), '..','..','configurations','IO.json'))
     buttonConfig = Configuration(os.path.join(os.path.dirname( __file__ ), '..','..','configurations','buttons.json'))
 
