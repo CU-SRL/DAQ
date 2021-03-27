@@ -79,7 +79,7 @@ while(True):
     if (currentState == rocketState.RUNNING):
         print("State ", rocketState.RUNNING, " -- Running")
 
-    time.sleep(.1) # rocket main loop time
+    time.sleep(.5) # rocket main loop time
 
 
 

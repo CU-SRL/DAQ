@@ -73,7 +73,7 @@ if __name__ == "__main__":
 
 
 
-        time.sleep(.1) # State machine run frequency
+        time.sleep(.25) # State machine run frequency
 
 
         

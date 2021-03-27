@@ -5,9 +5,9 @@ import json
 import threading
 import socket
 import sys
-
-
-import pilotModule 
+from JSONParsing import *
+from button import * 
+#from pilotModule import *
 # from pilotModule.button import *
 
 class pilotSide:
@@ -35,13 +35,15 @@ class pilotSide:
         # # for i in range(buttonConfig["numOfButtons"]):
         # #     buttonList.append(button(self.frm1, buttonConfig["buttons"][i]["buttonLabel"]))
 
-        print(buttonConfig.buttonDict())
+        #print(buttonConfig.buttonDict())
 
         
         #TODO Ian put the config json stuff in here
+        buttonList = []
 
-        for i in range(3):
-            buttonList.append(button(self.frm1, "bruh " + str(i)))
+        
+        for i in range(len(JSONParsing.buttonConfig.buttonDict)):
+            buttonList.append(button(self.frm1.JSONParsing.buttonConfig.buttonDict[i]['name']))
         # ************ Assign button handlers ************
             #! We will initialize the interface with some sort of "inactive" button handler
         for instance in buttonList:
