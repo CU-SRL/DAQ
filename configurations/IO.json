@@ -17,6 +17,7 @@
             "address": "0x48",
             "index": 1,
             "channel": 1,
+            "gain": 16,
             "scaleADCtoVoltage": 0.0078125,
             "purpose": "Fuel injector temp"
         },
@@ -26,6 +27,7 @@
             "address": "0x48",
             "index": 2,
             "channel": 2,
+            "gain": 16,
             "scaleADCtoVoltage": 0.0078125,
             "purpose": "LOX injector temp"
         },
@@ -35,6 +37,7 @@
             "address": "0x48",
             "index": 3,
             "channel": 3,
+            "gain": 16,
             "scaleADCtoVoltage": 0.0078125,
             "purpose": "N/A"
         },
@@ -44,6 +47,7 @@
             "address": "0x49",
             "index": 4,
             "channel": 0,
+            "gain": 16,
             "scaleADCtoVoltage": 0.0078125,
             "purpose": "N/A"
         },
@@ -53,6 +57,7 @@
             "address": "0x49",
             "index": 5,
             "channel": 1,
+            "gain": 16,
             "scaleADCtoVoltage": 0.0078125,
             "purpose": "N/A"
         },
@@ -62,6 +67,7 @@
             "address": "0x49",
             "index": 6,
             "channel": 2,
+            "gain": 16,
             "scaleADCtoVoltage": 0.0078125,
             "purpose": "N/A"
         },
@@ -71,6 +77,7 @@
             "address": "0x49",
             "index": 7,
             "channel": 3,
+            "gain": 16,
             "scaleADCtoVoltage": 0.0078125,
             "purpose": "N/A"
         },
