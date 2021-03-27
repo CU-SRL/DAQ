@@ -1,6 +1,6 @@
-import RPi.GPIO as GPIO
-import Adafruit_ADS1x15
-from hx711 import HX711
+#import RPi.GPIO as GPIO
+#import Adafruit_ADS1x15
+#from hx711 import HX711
 import JSONParsing
 import os
 
@@ -12,11 +12,11 @@ class sensorRead():
         self.IOConfig = JSONParsing.Configuration(os.path.join(os.path.dirname( __file__ ),'..','..','configurations','IO.json'))
         self.IOConfig.ingestJSON("IO")
         self.IOConfig.run()
-        self.adc0 = Adafruit_ADS1x15.ADS1115(address=self.IOConfig.thermocoupleDict[0]['address'],busnum=1)
-        self.adc1 = Adafruit_ADS1x15.ADS1115(address=self.IOConfig.thermocoupleDict[4]['address'],busnum=1)
-        self.adc2 = Adafruit_ADS1x15.ADS1115(address=self.IOConfig.ducerDict[0]['address'],busnum=1)
-        self.adc3 = Adafruit_ADS1x15.ADS1115(address=self.IOConfig.ducerDict[4]['address'],busnum=1)
-        self.loadCell = HX711(dout_pin=self.IOConfig.loadCellDict['DOUT'], pd_sck_pin=IOConfig.loadCellDict['CLK'])
+        #self.adc0 = Adafruit_ADS1x15.ADS1115(address=self.IOConfig.thermocoupleDict[0]['address'],busnum=1)
+        #self.adc1 = Adafruit_ADS1x15.ADS1115(address=self.IOConfig.thermocoupleDict[4]['address'],busnum=1)
+        #self.adc2 = Adafruit_ADS1x15.ADS1115(address=self.IOConfig.ducerDict[0]['address'],busnum=1)
+        #self.adc3 = Adafruit_ADS1x15.ADS1115(address=self.IOConfig.ducerDict[4]['address'],busnum=1)
+        #self.loadCell = HX711(dout_pin=self.IOConfig.loadCellDict['DOUT'], pd_sck_pin=IOConfig.loadCellDict['CLK'])
         self.ADCScaleThermo = dict()
         self.ADCScaleDucer = dict()
         self.ADCGainThermo = dict()
@@ -51,17 +51,17 @@ class sensorRead():
             self.ADCGainDucer[i] = self.IOConfig.thermocoupleDict[i]['gain']
         for i in range(len(self.IOConfig.ducerDict)):
             self.ducerPressureScale[i] = self.IOConfig.ducerDict[i]['scaleVoltagetoPressure']
-        self.loadCell.set_scale_ratio(sensors.IOConfig.loadCellDict['scale'])
+        #self.loadCell.set_scale_ratio(sensors.IOConfig.loadCellDict['scale'])
 
     def readThermocouples(self):
         for i in range(len(self.IOConfig.thermocoupleDict)):
-            if (i < 4 and self.IOConfig.thermocoupleDict['type'] == "ADS1115Thermo"):
+            if (i < 4 and self.IOConfig.thermocoupleDict[i]['type'] == "ADS1115Thermo"):
                 self.thermoVolt[i] = self.adc0.read(i,self.ADCGainThermo[i])*self.ADCScaleThermo[i]
-            elif (i >= 4 and i < 8 and self.IOConfig.thermocoupleDict['type'] == "ADS1115Thermo"):
+            elif (i >= 4 and i < 8 and self.IOConfig.thermocoupleDict[i]['type'] == "ADS1115Thermo"):
                 self.thermoVolt[i] = self.adc0.read(i-4,self.ADCGainThermo[i])*self.ADCScaleThermo[i]
-            elif (i >=8 and i < 12 and self.IOConfig.thermocoupleDict['type'] == "ADS1115Thermo"):
+            elif (i >=8 and i < 12 and self.IOConfig.thermocoupleDict[i]['type'] == "ADS1115Thermo"):
                 self.thermoVolt[i] = self.adc1.read(i-8,self.ADCGainThermo[i])*self.ADCScaleThermo[i]
-            elif (i >= 12 and i < 16 and self.IOConfig.thermocoupleDict['type'] == "ADS1115Thermo"):
+            elif (i >= 12 and i < 16 and self.IOConfig.thermocoupleDict[i]['type'] == "ADS1115Thermo"):
                 self.thermoVolt[i] = self.adc1.read(i-12,self.ADCGainThermo[i])*self.ADCScaleThermo[i]
             else:
                 return
@@ -70,13 +70,13 @@ class sensorRead():
 
     def readDucers(self):
         for i in range(len(self.IOConfig.ducerDict)):
-            if (i < 4 and self.IOConfig.ducerDict['type'] == "ADS1115Ducer"):
+            if (i < 4 and self.IOConfig.ducerDict[i]['type'] == "ADS1115Ducer"):
                 self.ducerVolt[i] = self.adc2.read(i,self.ADCGainDucer[i])*self.ADCScaleDucer[i]
-            elif (i >= 4 and i < 8 and self.IOConfig.ducerDict['type'] == "ADS1115Ducer"):
+            elif (i >= 4 and i < 8 and self.IOConfig.ducerDict[i]['type'] == "ADS1115Ducer"):
                 self.ducerVolt[i] = self.adc2.read(i-4,self.ADCGainDucer[i])*self.ADCScaleDucer[i]
-            elif (i >=8 and i < 12 and self.IOConfig.ducerDict['type'] == "ADS1115Ducer"):
+            elif (i >=8 and i < 12 and self.IOConfig.ducerDict[i]['type'] == "ADS1115Ducer"):
                 self.ducerVolt[i] = self.adc3.read(i-8,self.ADCGainDucer[i])*self.ADCScaleDucer[i]
-            elif (i >= 12 and i < 16 and self.IOConfig.thermocoupleDict['type'] == "ADS1115Ducer"):
+            elif (i >= 12 and i < 16 and self.IOConfig.thermocoupleDict[i]['type'] == "ADS1115Ducer"):
                 self.ducerVolt[i] = self.adc3.read(i-12,self.ADCGainDucer[i])*self.ADCScaleDucer[i]
             else:
                 return
