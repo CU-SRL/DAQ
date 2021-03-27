@@ -7,7 +7,8 @@ import socket
 import sys
 from enum import IntEnum
 
-from pilotModule import *
+#from pilotModule import *
+import pilotModule
 
 
 
@@ -35,7 +36,7 @@ if __name__ == "__main__":
             print("State ", int(pilotState.FIND_ROCKET), " -- Find Rocket")
 
             #This pulls the filename member from the JSONParsing Configuration class so I don't have to do more file path nonsense
-            configFileName = JSONParsing.IOConfig.filename
+            configFileName = pilotModule.IOConfig.filename
 
             intitialSendConfig = pilotModule.sendConfig('127.0.0.1', 50000, '127.0.0.1', 50001, configFileName)
             goodStart = intitialSendConfig.run()
