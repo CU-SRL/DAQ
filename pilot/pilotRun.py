@@ -63,6 +63,7 @@ if __name__ == "__main__":
 
 
         if(currentState == pilotState.START_UI):
+            #This is where we will assign the correct button handles and recolor  
             print("State ", pilotState.START_UI, " -- Starting UI")
             mainThread = pilotModule.pilotSide()
             mainThread.run()

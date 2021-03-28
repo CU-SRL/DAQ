@@ -1,6 +1,6 @@
 
 
-
+from pilotModule.textDisplay import *
 from pilotModule.JSONParsing import *
 from pilotModule.pilotSideMainThread import *
 from pilotModule.button import *
