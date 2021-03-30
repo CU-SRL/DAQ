@@ -14,7 +14,7 @@ class button:
             width=15,
             height=4,
             bg="blue",
-            fg="blue",
+            fg="white",
             relief = tk.RAISED)
 
         self.btn.pack(side = tk.TOP)

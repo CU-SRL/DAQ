@@ -19,7 +19,7 @@ class textDisplay:
                 width = 15,
                 height = 2,
                 bg = "blue",
-                fg = "red",
+                fg = "white",
                 relief = tk.SUNKEN)
 
 

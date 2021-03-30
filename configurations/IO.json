@@ -197,7 +197,7 @@
             "address": "0x40",
             "index": 0,
             "channel": 0,
-            "startPos": 0,
+            "fullClose": 0,
             "partialOpen": 45,
             "fullOpen": 90,
             "purpose": "Fuel valve"
@@ -208,7 +208,7 @@
             "address": "0x40",
             "index": 1,
             "channel": 1,
-            "startPos": 0,
+            "fullClose": 0,
             "partialOpen": 45,
             "fullOpen": 90,
             "purpose": "LOX valve"
@@ -219,7 +219,7 @@
             "address": "0x40",
             "index": 2,
             "channel": 2,
-            "startPos": 0,
+            "fullClose": 0,
             "partialOpen": 45,
             "fullOpen": 90,
             "purpose": "Something"
@@ -230,7 +230,7 @@
             "address": "0x40",
             "index": 3,
             "channel": 3,
-            "startPos": 0,
+            "fullClose": 0,
             "partialOpen": 45,
             "fullOpen": 90,
             "purpose": "Something"
@@ -241,7 +241,7 @@
             "address": "0x40",
             "index": 4,
             "channel": 4,
-            "startPos": 0,
+            "fullClose": 0,
             "partialOpen": 45,
             "fullOpen": 90,
             "purpose": "Something"
@@ -252,7 +252,7 @@
             "address": "0x40",
             "index": 5,
             "channel": 5,
-            "startPos": 0,
+            "fullClose": 0,
             "partialOpen": 45,
             "fullOpen": 90,
             "purpose": "Something"
