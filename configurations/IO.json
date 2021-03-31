@@ -257,5 +257,38 @@
             "fullOpen": 90,
             "purpose": "Something"
         }
+    ],
+    "devices":
+    [
+        {
+            "name": "ADS1",
+            "type": "ADS1115",
+            "address": "0x48",
+            "index": 0
+        },
+        {
+            "name": "ADS2",
+            "type": "ADS1115",
+            "address": "0x49",
+            "index": 1
+        },
+        {
+            "name": "ADS3",
+            "type": "ADS1115",
+            "address": "0x4A",
+            "index": 2
+        },
+        {
+            "name": "ADS4",
+            "type": "ADS1115",
+            "address": "0x4B",
+            "index": 3
+        },
+        {
+            "name": "LoadCellAmp",
+            "type": "HX711",
+            "address": "0x48",
+            "index": 4
+        }
     ]
 }

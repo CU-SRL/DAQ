@@ -7,12 +7,13 @@ import os
 
 GPIO.setmode(GPIO.bcm)
 
-class sensorRead():
-    def __init__(self): #Initialization function, parses JSON and creates device objects and data variables
+class SensorRead():
+    def __init__(self, IOConfig): #Initialization function, parses JSON and creates device objects and data variables
         #JSON Ingestion
-        self.IOConfig = JSONParsing.Configuration(os.path.join(os.path.dirname( __file__ ),'..','..','configurations','IO.json'))
-        self.IOConfig.ingestJSON("IO")
-        self.IOConfig.run()
+        #self.IOConfig = JSONParsing.Configuration(os.path.join(os.path.dirname( __file__ ),'..','..','configurations','IO.json'))
+        #self.IOConfig.ingestJSON("IO")
+        #self.IOConfig.run()
+        self.IOConfig = IOConfig
         self.adc0 = Adafruit_ADS1x15.ADS1115(address=self.IOConfig.thermocoupleDict[0]['address'],busnum=1)
         self.adc1 = Adafruit_ADS1x15.ADS1115(address=self.IOConfig.thermocoupleDict[4]['address'],busnum=1)
         self.adc2 = Adafruit_ADS1x15.ADS1115(address=self.IOConfig.ducerDict[0]['address'],busnum=1)
@@ -94,6 +95,20 @@ class sensorRead():
         self.ducerData = self.readDucers()
         self.loadCellData = self.readLoadCell()
     
+if __name__ == "__main__":
+    sensors = SensorRead()
+    sensors.run()
 
-sensors = sensorRead()
-sensors.run()
+    for i in range(len(sensors.thermocoupleData)):
+        print(sensors.thermocoupleData[i])
+
+    for i in range(len(ducerData)):
+        print(sensors.ducerData[i])
+
+    for i in range(len(loadCellData)):
+        print(sensors.loadCellData)
+
+else:
+    sensors = SensorRead()
+    sensors.run()
+

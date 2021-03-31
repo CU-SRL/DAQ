@@ -11,9 +11,12 @@ class Configuration():
         self.ducerDict = dict()
         self.loadCellDict = dict()
         self.servoDict = dict()
+        self.ADSDict = dict()
+        self.HXDict = dict()
         self.buttonDict = dict()
         self.ducerOffset = 0 #Amount of index offset for correctly creating the ducer dictionary
         self.loadCellOffset = 0 #Amount of index offset for correctly creating the load cell dictionary
+        self.HXOffset = 0 #Amount of index offset for correctly creating the HX711 dictionary
         
     def ingestJSON(self, configType): #Ingest JSON function, flags which parts of the raw JSON dictionary should be unpacked into dictionaries
         with open(self.filename) as f:
@@ -23,12 +26,14 @@ class Configuration():
             self.ducerUnpack = 1
             self.loadUnpack = 1
             self.servoUnpack = 1
+            self.deviceUnpack = 1
             self.buttonUnpack = 0
         elif configType == "buttons": #If the object is of type buttons
             self.thermoUnpack = 0
             self.ducerUnpack = 0
             self.loadUnpack = 0
             self.servoUnpack = 0
+            self.deviceUnpack = 0
             self.buttonUnpack = 1
         
     def thermocouples(self): #Create a thermocouple dictionary or ignore the thermocouple entries if the object is of type buttons
@@ -70,7 +75,26 @@ class Configuration():
             return self.servoDict
         else:
             return
-        
+
+    def ADSs(self):
+        if self.deviceUnpack == 1:
+            for i in range(len(self.rawJSON['devices'])):
+                if self.rawJSON['devices'][i]['type'] == "ADS1115":
+                    self.ADSDict[i] = self.rawJSON['devices'][i]
+            return self.ADSDict
+        else:
+            return
+
+    def HX711s(self):
+        if self.deviceUnpack == 1:
+            for i in range(len(self.rawJSON['devices'])):
+                if(self.rawJSON['devices'][i-1]['type'] == "ADS1115"):
+                    self.HXOffset = i
+                if self.rawJSON['devices'][i]['type'] == "HX711":
+                    self.HXDict[i-self.HXOffset] = self.rawJSON['devices'][i]
+            return self.HXDict
+        else:
+            return
 
     def buttons(self): #Create a button dictionary or ignore the button entries if the object is of type IO
         if self.buttonUnpack == 1:
@@ -85,6 +109,8 @@ class Configuration():
         self.ducerDict = self.ducers() #Create the ducer dictionary
         self.loadCellDict = self.loadCell() #Create the load cell dictionary
         self.servoDict = self.servos() #Create the servo dictionary
+        self.ADSDict = self.ADSs() #Create the ADS1115 dictionary
+        self.HXDict = self.HX711s() #Create the HX711 dictionary
         self.buttonDict = self.buttons() #Create the button dictionary
 
 # INCLUDE THIS BLOCK OF CODE TO INGEST JSON, CHANGE FILE PATHING AS NECESSARY
@@ -130,12 +156,16 @@ if __name__ == "__main__":
     for i in range(len(IOConfig.servoDict)):
         print(IOConfig.servoDict[i]['name'])
 
+    for i in range(len(IOConfig.ADSDict)):
+        print(IOConfig.ADSDict[i]['name'])
+
+    for i in range(len(IOConfig.HXDict)):
+        print(IOConfig.HXDict[i]['name'])
+
     for i in range(len(buttonConfig.buttonDict)):
         print(buttonConfig.buttonDict[i]['name'])
 
 else:
-
-    print("JSON Has been parsed")
     IOConfig = Configuration(os.path.join(os.path.dirname( __file__ ), '..','..','configurations','IO.json'))
     buttonConfig = Configuration(os.path.join(os.path.dirname( __file__ ), '..','..','configurations','buttons.json'))
 
@@ -143,3 +173,6 @@ else:
     IOConfig.run()
     buttonConfig.ingestJSON("buttons")
     buttonConfig.run()
+    
+    print("JSON Has been parsed")
+
