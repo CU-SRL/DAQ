@@ -76,8 +76,9 @@ class SensorRead():
             else:
                 0
             self.thermocoupleData[i] = self.d0 + self.d1*self.thermoVolt[i] + self.d2*(self.thermoVolt[i]**2) + self.d3*(self.thermoVolt[i]**3) + self.d4*(self.thermoVolt[i]**4) + self.d5*(self.thermoVolt[i]**5) + self.d6*(self.thermoVolt[i]**6) + self.d7*(self.thermoVolt[i]**7) + self.d8*(self.thermoVolt[i]**8) + self.d9*(self.thermoVolt[i]**9)
-            self.thermocoupleData[i] = (9/5)*self.thermocoupleData[0] + 32 + 68
-            #print("temperature: ", self.thermocoupleData[i])
+            self.thermocoupleData[i] = (9/5)*self.thermocoupleData[i] + 32 + 68
+            print(i," temperature: ", self.thermocoupleData[i])
+            if i == 3: print(" ")
         return self.thermocoupleData
 
     def readDucers(self): #Pressure transducer reading function, checks if the object is a transducer and calculates the voltage output, then converts it into a pressure reading using the scale defined in the JSON file
@@ -113,7 +114,8 @@ if __name__ == "__main__":
     
     for i in range(1000):
         sensors.readThermocouples()
-        #print("temp: ",sensors.thermocoupleData[0])
+        #print(i)
+        #print("temps: ", sensors.thermocoupleData[0], " ", sensors.thermocoupleData[1], " ", sensors.thermocoupleData[2])
     print (time.time() - startTime)
 
     #for i in range(len(sensors.thermocoupleData)):
