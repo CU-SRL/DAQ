@@ -4,7 +4,7 @@
         {
             "name": "thermocouple0",
             "type": "ADS1115Thermo",
-            "address": "0x48",
+            "address": 72,
             "index": 0,
             "channel": 0,
             "gain": 16,
@@ -14,7 +14,7 @@
         {
             "name": "thermocouple1",
             "type": "ADS1115Thermo",
-            "address": "0x48",
+            "address": 72,
             "index": 1,
             "channel": 1,
             "gain": 16,
@@ -24,7 +24,7 @@
         {
             "name": "thermocouple2",
             "type": "ADS1115Thermo",
-            "address": "0x48",
+            "address": 72,
             "index": 2,
             "channel": 2,
             "gain": 16,
@@ -34,7 +34,7 @@
         {
             "name": "thermocouple3",
             "type": "ADS1115Thermo",
-            "address": "0x48",
+            "address": 72,
             "index": 3,
             "channel": 3,
             "gain": 16,
@@ -44,7 +44,7 @@
         {
             "name": "thermocouple4",
             "type": "ADS1115Thermo",
-            "address": "0x49",
+            "address": 73,
             "index": 4,
             "channel": 0,
             "gain": 16,
@@ -54,7 +54,7 @@
         {
             "name": "thermocouple5",
             "type": "ADS1115Thermo",
-            "address": "0x49",
+            "address": 73,
             "index": 5,
             "channel": 1,
             "gain": 16,
@@ -64,7 +64,7 @@
         {
             "name": "thermocouple6",
             "type": "ADS1115Thermo",
-            "address": "0x49",
+            "address": 73,
             "index": 6,
             "channel": 2,
             "gain": 16,
@@ -74,7 +74,7 @@
         {
             "name": "thermocouple7",
             "type": "ADS1115Thermo",
-            "address": "0x49",
+            "address": 73,
             "index": 7,
             "channel": 3,
             "gain": 16,
@@ -84,7 +84,7 @@
         {
             "name": "transducer0",
             "type": "ADS1115Ducer",
-            "address": "0x4A",
+            "address": 74,
             "index": 8,
             "channel": 0,
             "gain": 16,
@@ -96,7 +96,7 @@
         {
             "name": "transducer1",
             "type": "ADS1115Ducer",
-            "address": "0x4A",
+            "address": 74,
             "index": 9,
             "channel": 1,
             "gain": 16,
@@ -108,7 +108,7 @@
         {
             "name": "transducer2",
             "type": "ADS1115Ducer",
-            "address": "0x4A",
+            "address": 74,
             "index": 10,
             "channel": 2,
             "gain": 16,
@@ -120,7 +120,7 @@
         {
             "name": "transducer3",
             "type": "ADS1115Ducer",
-            "address": "0x4A",
+            "address": 74,
             "index": 11,
             "channel": 3,
             "gain": 16,
@@ -132,7 +132,7 @@
         {
             "name": "transducer4",
             "type": "ADS1115Ducer",
-            "address": "0x4B",
+            "address": 75,
             "index": 12,
             "channel": 0,
             "gain": 16,
@@ -144,7 +144,7 @@
         {
             "name": "transducer5",
             "type": "ADS1115Ducer",
-            "address": "0x4B",
+            "address": 75,
             "index": 13,
             "channel": 1,
             "gain": 16,
@@ -156,7 +156,7 @@
         {
             "name": "transducer6",
             "type": "ADS1115Ducer",
-            "address": "0x4B",
+            "address": 75,
             "index": 14,
             "channel": 2,
             "gain": 16,
@@ -168,7 +168,7 @@
         {
             "name": "transducer7",
             "type": "ADS1115Ducer",
-            "address": "0x4B",
+            "address": 75,
             "index": 15,
             "channel": 3,
             "gain": 16,
@@ -194,7 +194,7 @@
         {
             "name": "servo0",
             "type": "PCA9685",
-            "address": "0x40",
+            "address": 64,
             "index": 0,
             "channel": 0,
             "fullClose": 0,
@@ -205,7 +205,7 @@
         {
             "name": "servo1",
             "type": "PCA9685",
-            "address": "0x40",
+            "address": 64,
             "index": 1,
             "channel": 1,
             "fullClose": 0,
@@ -216,7 +216,7 @@
         {
             "name": "servo2",
             "type": "PCA9685",
-            "address": "0x40",
+            "address": 64,
             "index": 2,
             "channel": 2,
             "fullClose": 0,
@@ -227,7 +227,7 @@
         {
             "name": "servo3",
             "type": "PCA9685",
-            "address": "0x40",
+            "address": 64,
             "index": 3,
             "channel": 3,
             "fullClose": 0,
@@ -238,7 +238,7 @@
         {
             "name": "servo4",
             "type": "PCA9685",
-            "address": "0x40",
+            "address": 64,
             "index": 4,
             "channel": 4,
             "fullClose": 0,
@@ -249,7 +249,7 @@
         {
             "name": "servo5",
             "type": "PCA9685",
-            "address": "0x40",
+            "address": 64,
             "index": 5,
             "channel": 5,
             "fullClose": 0,
@@ -263,31 +263,31 @@
         {
             "name": "ADS1",
             "type": "ADS1115",
-            "address": "0x48",
+            "address": 72,
             "index": 0
         },
         {
             "name": "ADS2",
             "type": "ADS1115",
-            "address": "0x49",
+            "address": 73,
             "index": 1
         },
         {
             "name": "ADS3",
             "type": "ADS1115",
-            "address": "0x4A",
+            "address": 74,
             "index": 2
         },
         {
             "name": "ADS4",
             "type": "ADS1115",
-            "address": "0x4B",
+            "address": 75,
             "index": 3
         },
         {
-            "name": "LoadCellAmp",
-            "type": "HX711",
-            "address": "0x48",
+            "name": "ServoDriver",
+            "type": "PCA9685",
+            "address": 64,
             "index": 4
         }
     ]
