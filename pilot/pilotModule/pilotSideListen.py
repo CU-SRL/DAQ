@@ -5,7 +5,8 @@ import json
 import threading
 import socket
 import sys
-
+import io
+import csv
 
 class pilotSideListen:
 
@@ -21,3 +22,5 @@ class pilotSideListen:
             data = self.listenSocket.recv(1024)
             print("Message recieved from rocket: %s" % data)
             time.sleep(.4)
+
+        
