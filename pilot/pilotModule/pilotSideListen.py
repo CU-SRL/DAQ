@@ -7,20 +7,23 @@ import socket
 import sys
 import io
 import csv
+import queue
 
 class pilotSideListen:
 
-    def __init__(self, pilotIP, pilotPORT, rocketIP, rocketPORT):
+    def __init__(self, pilotIP, pilotPORT, rocketIP, rocketPORT, telemetryQueue):
         self.listenSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.pilotAddress = (pilotIP, pilotPORT)
         self.rocketAddress = (rocketIP, rocketPORT)
 
         self.listenSocket.bind(self.pilotAddress)
+        self.telemetryQueue = telemetryQueue
 
     def run(self):
         while True:
             data = self.listenSocket.recv(1024)
             print("Message recieved from rocket: %s" % data)
+            self.telemetryQueue.put(json.loads(data))
             time.sleep(.4)
 
         

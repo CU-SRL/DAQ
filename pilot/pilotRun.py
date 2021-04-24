@@ -6,6 +6,8 @@ import threading
 import socket
 import sys
 from enum import IntEnum
+import queue
+import signal
 
 #from pilotModule import *
 import pilotModule
@@ -20,17 +22,38 @@ class pilotState(IntEnum):
     START_TALK    = 4
     START_UI      = 5
     RUNNING       = 6
+    EXIT          = 7
+
+
+
+currentState = pilotState.START_UP
+
+
+def interrupt2exit(sig, frame):
+    print('Interrupt caught')
+    global currentState
+    currentState = pilotState.EXIT
+
+signal.signal(signal.SIGINT, interrupt2exit)
 
 
 
 
-
-
-currentState = pilotState.FIND_ROCKET
 
 if __name__ == "__main__":
+    telemetryQueue = queue.Queue(maxsize = 100)
+    
     while(True):
+        
+        if(currentState == pilotState.START_UP):
+            print("State ", int(pilotState.START_UP),  "-- Starting Up")
 
+            loggingObj = pilotModule.loggingTelem(telemetryQueue)
+            loggingThread = threading.Thread(target = loggingObj.logTelem) 
+            loggingThread.start()
+               
+            currentState = pilotState.FIND_ROCKET
+            
         if(currentState == pilotState.FIND_ROCKET):
 
             print("State ", int(pilotState.FIND_ROCKET), " -- Find Rocket")
@@ -46,8 +69,9 @@ if __name__ == "__main__":
         if(currentState == pilotState.START_LISTEN):
             print("State ", pilotState.START_LISTEN, " -- Starting Listening to Rocket")
 
-            pilotListen_obj = pilotModule.pilotSideListen('127.0.0.1', 50000, '127.0.0.1', 50001)
+            pilotListen_obj = pilotModule.pilotSideListen('127.0.0.1', 50000, '127.0.0.1', 50001,telemetryQueue)
             listenThread = threading.Thread(target=pilotListen_obj.run)
+            listenThread.daemon = True
             listenThread.start()
 
             currentState = pilotState.START_TALK
@@ -57,6 +81,7 @@ if __name__ == "__main__":
 
             pilotTalk_obj = pilotModule.pilotSideTalk('127.0.0.1', 50000, '127.0.0.1', 50001)
             talkThread = threading.Thread(target=pilotTalk_obj.run)
+            talkThread.daemon = True
             talkThread.start()
 
             currentState = pilotState.START_UI
@@ -73,22 +98,15 @@ if __name__ == "__main__":
             print("State ", pilotState.RUNNING, " -- Running")
             time.sleep(1)
 
+        if(currentState == pilotState.EXIT):
 
+            loggingObj.run_flag.set()
+            loggingThread.join()
+
+            break
 
         time.sleep(.25) # State machine run frequency
 
+    exit()
 
-        
-    # pilotTalk_obj = pilotModule.pilotSideTalk('127.0.0.1', 50000, '127.0.0.1', 50001)
-    # pilotListen_obj = pilotModule.pilotSideListen('127.0.0.1', 50000, '127.0.0.1', 50001)
-
-    # talkThread = threading.Thread(target=pilotTalk_obj.run)
-    # talkThread.start()
-
-    # listenThread = threading.Thread(target=pilotListen_obj.run)
-    # listenThread.start()
-
-    # mainThread = pilotModule.pilotSide()
-    # mainThread.run()
-
-
+    
