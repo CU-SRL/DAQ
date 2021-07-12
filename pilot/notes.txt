@@ -1,0 +1,26 @@
+Complete:
+General architecture
+Uplink/downlink
+Threads run fine
+Catching keyboard interrupt
+printing "telem" to UI
+configuration handshake on startup(tcp)
+sensor reading (sucks tho)
+
+
+Update:
+thread timing (20 mins)
+make UI look better(2 hours)
+logging (2 people 2 hours ?)
+sensor reading using ioctls (12 hours + lead time)
+
+TODO:
+implement telem/command queues (1 hour)
+IP hardware integration (2 people 2 hours [in person])
+sensor hardware integration (2 hours)
+safe shutdown (4 hours)
+command call backs (2 hours once queues are done)
+
+This will get us 90% there and the last 10% wont happen until we start testing
+because we wont know what's wrong until then.
+

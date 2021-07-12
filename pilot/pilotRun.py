@@ -12,7 +12,8 @@ import signal
 #from pilotModule import *
 import pilotModule
 
-
+cmdQ = queue.Queue(maxsize=100)
+telemQ = queue.Queue(maxsize=100)
 
 
 class pilotState(IntEnum):
@@ -48,9 +49,9 @@ if __name__ == "__main__":
         if(currentState == pilotState.START_UP):
             print("State ", int(pilotState.START_UP),  "-- Starting Up")
 
-            loggingObj = pilotModule.loggingTelem(telemetryQueue)
-            loggingThread = threading.Thread(target = loggingObj.logTelem) 
-            loggingThread.start()
+            # loggingObj = pilotModule.loggingTelem(telemetryQueue)
+            # loggingThread = threading.Thread(target = loggingObj.logTelem) 
+            # loggingThread.start()
                
             currentState = pilotState.FIND_ROCKET
             
@@ -69,7 +70,7 @@ if __name__ == "__main__":
         if(currentState == pilotState.START_LISTEN):
             print("State ", pilotState.START_LISTEN, " -- Starting Listening to Rocket")
 
-            pilotListen_obj = pilotModule.pilotSideListen('127.0.0.1', 50000, '127.0.0.1', 50001,telemetryQueue)
+            pilotListen_obj = pilotModule.pilotSideListen('127.0.0.1', 50000, '127.0.0.1', 50001,telemQ)
             listenThread = threading.Thread(target=pilotListen_obj.run)
             listenThread.daemon = True
             listenThread.start()
@@ -79,7 +80,7 @@ if __name__ == "__main__":
         if(currentState == pilotState.START_TALK):
             print("State ", pilotState.START_TALK, " -- Starting Talking to Rocket")
 
-            pilotTalk_obj = pilotModule.pilotSideTalk('127.0.0.1', 50000, '127.0.0.1', 50001)
+            pilotTalk_obj = pilotModule.pilotSideTalk('127.0.0.1', 50000, '127.0.0.1', 50001, cmdQ)
             talkThread = threading.Thread(target=pilotTalk_obj.run)
             talkThread.daemon = True
             talkThread.start()
@@ -90,7 +91,7 @@ if __name__ == "__main__":
         if(currentState == pilotState.START_UI):
             #This is where we will assign the correct button handles and recolor  
             print("State ", pilotState.START_UI, " -- Starting UI")
-            mainThread = pilotModule.pilotSide()
+            mainThread = pilotModule.pilotSide(telemQ, cmdQ)
             mainThread.run()
 
         if(currentState == pilotState.RUNNING):

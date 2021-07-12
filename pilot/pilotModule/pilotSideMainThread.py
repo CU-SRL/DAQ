@@ -21,11 +21,14 @@ class pilotSide:
         print("button inactive")
 
 
-    def __init__(self):
+    def __init__(self, telemQ, cmdQ):
         self.window = tk.Tk()
         self.frm1 = tk.Frame()
         self.frm2 = tk.Frame()
         self.frm3 = tk.Frame()
+
+        self.telemetryQueue = telemQ
+        self.commandQueue = cmdQ
 
 
         #TODO (TICKET 2) fix button background color for MAC
@@ -95,6 +98,9 @@ class pilotSide:
 # ************ Main function of main thread ************
     def run(self):
         while (True):
+            temp = self.telemetryQueue.get()
+            commandQueue.put(temp)
+
             self.window.update()
             self.window.update_idletasks()
             self.pilotUpdate()

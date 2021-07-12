@@ -11,13 +11,13 @@ import queue
 
 class pilotSideListen:
 
-    def __init__(self, pilotIP, pilotPORT, rocketIP, rocketPORT, telemetryQueue):
+    def __init__(self, pilotIP, pilotPORT, rocketIP, rocketPORT, telemQ):
         self.listenSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.pilotAddress = (pilotIP, pilotPORT)
         self.rocketAddress = (rocketIP, rocketPORT)
 
         self.listenSocket.bind(self.pilotAddress)
-        self.telemetryQueue = telemetryQueue
+        self.telemetryQueue = telemQ
 
     def run(self):
         while True:
