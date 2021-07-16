@@ -21,9 +21,11 @@ class pilotState(IntEnum):
     RUNNING       = 6
     EXIT          = 7
 
-currentState = pilotState.START_UP
-
 if __name__ == "__main__":
+    # Set Start Up state for Pilot
+    currentState = pilotState.START_UP
+
+    # Define Queue size
     telemetryQueue = queue.Queue(maxsize = 100)
     
     while(True):
@@ -33,6 +35,7 @@ if __name__ == "__main__":
 
                 loggingObj = pilotModule.loggingTelem(telemetryQueue)
                 loggingThread = threading.Thread(target = loggingObj.logTelem) 
+                loggingThread.daemon=True
                 loggingThread.start()
 
                 currentState = pilotState.FIND_ROCKET
@@ -74,28 +77,26 @@ if __name__ == "__main__":
                 #This is where we will assign the correct button handles and recolor  
                 print("State ", pilotState.START_UI, " -- Starting UI")
                 mainThread = pilotModule.pilotSide()
+                mainThread.daemon=True
                 mainThread.run()
 
             if(currentState == pilotState.RUNNING):
-
                 print("State ", pilotState.RUNNING, " -- Running")
                 time.sleep(1)
 
             # State machine run frequency
             time.sleep(.25)
-
-        except KeyboardInterrupt:
+        except (KeyboardInterrupt, SystemExit):
             # Print Shutdown statement
-            print("Shutting Down Pilot! ...")
+            print("Shutting Down Pilot!")
 
             loggingObj.run_flag.set()
             loggingThread.join()
 
             # Close csv gracefully
             loggingObj.close_csv()
+            print("Telemetry File is closed: ", loggingObj.csvFile.closed)
 
-            break
-
-    exit()
+            exit()
 
     
