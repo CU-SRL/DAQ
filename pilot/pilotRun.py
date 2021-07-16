@@ -29,83 +29,78 @@ class pilotState(IntEnum):
 currentState = pilotState.START_UP
 
 
-def interrupt2exit(sig, frame):
-    print('Interrupt caught')
-    global currentState
-    currentState = pilotState.EXIT
-
-signal.signal(signal.SIGINT, interrupt2exit)
-
-
-
-
-
 if __name__ == "__main__":
     telemetryQueue = queue.Queue(maxsize = 100)
     
     while(True):
-        
-        if(currentState == pilotState.START_UP):
-            print("State ", int(pilotState.START_UP),  "-- Starting Up")
+        try:
+            if(currentState == pilotState.START_UP):
+                print("State ", int(pilotState.START_UP),  "-- Starting Up")
 
-            loggingObj = pilotModule.loggingTelem(telemetryQueue)
-            loggingThread = threading.Thread(target = loggingObj.logTelem) 
-            loggingThread.start()
-               
-            currentState = pilotState.FIND_ROCKET
-            
-        if(currentState == pilotState.FIND_ROCKET):
+                loggingObj = pilotModule.loggingTelem(telemetryQueue)
+                loggingThread = threading.Thread(target = loggingObj.logTelem) 
+                loggingThread.start()
 
-            print("State ", int(pilotState.FIND_ROCKET), " -- Find Rocket")
+                currentState = pilotState.FIND_ROCKET
 
-            #This pulls the filename member from the JSONParsing Configuration class so I don't have to do more file path nonsense
-            configFileName = pilotModule.IOConfig.filename
+            if(currentState == pilotState.FIND_ROCKET):
 
-            intitialSendConfig = pilotModule.sendConfig('127.0.0.1', 50000, '127.0.0.1', 50001, configFileName)
-            goodStart = intitialSendConfig.run()
+                print("State ", int(pilotState.FIND_ROCKET), " -- Find Rocket")
 
-            currentState = pilotState.START_LISTEN
+                #This pulls the filename member from the JSONParsing Configuration class so I don't have to do more file path nonsense
+                configFileName = pilotModule.IOConfig.filename
 
-        if(currentState == pilotState.START_LISTEN):
-            print("State ", pilotState.START_LISTEN, " -- Starting Listening to Rocket")
+                intitialSendConfig = pilotModule.sendConfig('127.0.0.1', 50000, '127.0.0.1', 50001, configFileName)
+                goodStart = intitialSendConfig.run()
 
-            pilotListen_obj = pilotModule.pilotSideListen('127.0.0.1', 50000, '127.0.0.1', 50001,telemetryQueue)
-            listenThread = threading.Thread(target=pilotListen_obj.run)
-            listenThread.daemon = True
-            listenThread.start()
+                currentState = pilotState.START_LISTEN
 
-            currentState = pilotState.START_TALK
+            if(currentState == pilotState.START_LISTEN):
+                print("State ", pilotState.START_LISTEN, " -- Starting Listening to Rocket")
 
-        if(currentState == pilotState.START_TALK):
-            print("State ", pilotState.START_TALK, " -- Starting Talking to Rocket")
+                pilotListen_obj = pilotModule.pilotSideListen('127.0.0.1', 50000, '127.0.0.1', 50001,telemetryQueue)
+                listenThread = threading.Thread(target=pilotListen_obj.run)
+                listenThread.daemon = True
+                listenThread.start()
 
-            pilotTalk_obj = pilotModule.pilotSideTalk('127.0.0.1', 50000, '127.0.0.1', 50001)
-            talkThread = threading.Thread(target=pilotTalk_obj.run)
-            talkThread.daemon = True
-            talkThread.start()
+                currentState = pilotState.START_TALK
 
-            currentState = pilotState.START_UI
+            if(currentState == pilotState.START_TALK):
+                print("State ", pilotState.START_TALK, " -- Starting Talking to Rocket")
+
+                pilotTalk_obj = pilotModule.pilotSideTalk('127.0.0.1', 50000, '127.0.0.1', 50001)
+                talkThread = threading.Thread(target=pilotTalk_obj.run)
+                talkThread.daemon = True
+                talkThread.start()
+
+                currentState = pilotState.START_UI
 
 
-        if(currentState == pilotState.START_UI):
-            #This is where we will assign the correct button handles and recolor  
-            print("State ", pilotState.START_UI, " -- Starting UI")
-            mainThread = pilotModule.pilotSide()
-            mainThread.run()
+            if(currentState == pilotState.START_UI):
+                #This is where we will assign the correct button handles and recolor  
+                print("State ", pilotState.START_UI, " -- Starting UI")
+                mainThread = pilotModule.pilotSide()
+                mainThread.run()
 
-        if(currentState == pilotState.RUNNING):
+            if(currentState == pilotState.RUNNING):
 
-            print("State ", pilotState.RUNNING, " -- Running")
-            time.sleep(1)
+                print("State ", pilotState.RUNNING, " -- Running")
+                time.sleep(1)
 
-        if(currentState == pilotState.EXIT):
+            # State machine run frequency
+            time.sleep(.25)
+
+        except KeyboardInterrupt:
+            # Print Shutdown statement
+            print("Shutting Down Pilot! ...")
 
             loggingObj.run_flag.set()
             loggingThread.join()
 
-            break
+            # Close csv gracefully
+            loggingObj.close_csv()
 
-        time.sleep(.25) # State machine run frequency
+            break
 
     exit()
 
