@@ -9,8 +9,7 @@ class loggingTelem():
     def __init__(self, telemQ):
         self.telemQ = telemQ
         self.run_flag = threading.Event()
-        self.path = './pilot/telemetry/testData%s.csv' % (str(datetime.datetime.today()))
-        #self.path = '../telemetry/testData%s.csv' % (str(datetime.datetime.today()))
+        self.path = 'telemetry/testData%s.csv' % (str(datetime.datetime.today()))
         self.csvFile = open(self.path, 'w', newline= '\n')
         self.dataWriter = csv.writer(self.csvFile, delimiter = ',')
         self.header = ['time','loadcell','tc1','tc2'] 
@@ -27,6 +26,9 @@ class loggingTelem():
                 self.dataWriter.writerow(self.telemQ.get())
                 #print(self.telemQ.get())
             time.sleep(.5)
+    
+    def close_csv(self):
+        self.csvFile.close()
 
 
 
