@@ -12,9 +12,6 @@ import signal
 #from pilotModule import *
 import pilotModule
 
-
-
-
 class pilotState(IntEnum):
     START_UP      = 1
     FIND_ROCKET   = 2
@@ -24,10 +21,7 @@ class pilotState(IntEnum):
     RUNNING       = 6
     EXIT          = 7
 
-
-
 currentState = pilotState.START_UP
-
 
 if __name__ == "__main__":
     telemetryQueue = queue.Queue(maxsize = 100)

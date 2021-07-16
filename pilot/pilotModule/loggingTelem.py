@@ -19,7 +19,6 @@ class loggingTelem():
     def __del__(self):
         self.csvFile.close()
 
-
     def logTelem(self):
         while not self.run_flag.is_set():
             if (not (self.telemQ.empty())):
