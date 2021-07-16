@@ -9,9 +9,9 @@ import sys
 from enum import Enum
 
 # Instantiate all queues
-sensorQueue = queue.Queue()
-tlmQueue = queue.Queue() 
-cmdQueue = queue.Queue()
+sensorQueue = queue.Queue(maxsize=100)
+tlmQueue = queue.Queue(maxsize=100) 
+cmdQueue = queue.Queue(maxsize=100)
 # TODO Define rest of the queue objects
 
 class rocketState(Enum):

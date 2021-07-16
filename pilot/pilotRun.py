@@ -12,7 +12,8 @@ import signal
 #from pilotModule import *
 import pilotModule
 
-
+cmdQ = queue.Queue(maxsize=100)
+telemQ = queue.Queue(maxsize=100)
 
 
 class pilotState(IntEnum):
@@ -74,7 +75,6 @@ if __name__ == "__main__":
                 talkThread.start()
 
                 currentState = pilotState.START_UI
-
 
             if(currentState == pilotState.START_UI):
                 #This is where we will assign the correct button handles and recolor  

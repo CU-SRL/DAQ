@@ -21,7 +21,10 @@ class rocketSideTalk():
         while True:
             #message = b"<message from rocket>"
             # ! find some sort of non-blocking solution that works without MSG_DONTWAIT
-            message =json.dumps([str(datetime.datetime.now()), "bru1", "kenny","ian put date here"]).encode('utf-8')
+            '''Stand in for sensor reading to figure out queues while we  work 
+               on the specifics for sensor reading'''
+            #Message will eventually be the readings from the peripherals
+            message =json.dumps([str("Sent from rocket at: ", datetime.datetime.now())]).encode('utf-8')
 
             self.talkSocket.sendto(message, self.pilotAddress)
             time.sleep(.5)
