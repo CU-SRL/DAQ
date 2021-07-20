@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
-
+*.csv
+.DS_Store
 # Compiled Object files
 *.slo
 *.lo

@@ -24,7 +24,8 @@ class rocketSideTalk():
             '''Stand in for sensor reading to figure out queues while we  work 
                on the specifics for sensor reading'''
             #Message will eventually be the readings from the peripherals
-            message =json.dumps([str("Sent from rocket at: ", datetime.datetime.now())]).encode('utf-8')
+            #now = datetime.datetime.now()
+            message =json.dumps(["Sent from rocket at: ", str(datetime.datetime.now())]).encode('utf-8')
 
             self.talkSocket.sendto(message, self.pilotAddress)
             time.sleep(.5)

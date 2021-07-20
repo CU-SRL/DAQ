@@ -10,6 +10,8 @@ class loggingTelem():
         self.telemQ = telemQ
         self.run_flag = threading.Event()
         self.path = 'telemetry/testData%s.csv' % (str(datetime.datetime.today()))
+        # Change paths for unit testing
+        #self.path = '../telemetry/testData%s.csv' % (str(datetime.datetime.today()))
         self.csvFile = open(self.path, 'w', newline= '\n')
         self.dataWriter = csv.writer(self.csvFile, delimiter = ',')
         self.header = ['time','loadcell','tc1','tc2'] 
@@ -23,7 +25,10 @@ class loggingTelem():
     def logTelem(self):
         while not self.run_flag.is_set():
             if (not (self.telemQ.empty())):
-                self.dataWriter.writerow(self.telemQ.get())
+                temp = self.telemQ.get()
+                print("Logging this: ", temp)
+                self.dataWriter.writerow(temp)
+                self.csvFile.flush()
                 #print(self.telemQ.get())
             time.sleep(.5)
     

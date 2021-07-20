@@ -98,8 +98,9 @@ class pilotSide:
 # ************ Main function of main thread ************
     def run(self):
         while (True):
-            temp = self.telemetryQueue.get()
-            commandQueue.put(temp)
+            if(not self.telemetryQueue.empty()):
+                temp = self.telemetryQueue.get()
+                commandQueue.put(temp)
 
             self.window.update()
             self.window.update_idletasks()

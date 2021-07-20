@@ -45,7 +45,8 @@ while(True):
         # TODO The rest of the threads
 
         # Run all threads
-        hypervisorThread.start()
+        # Not using the hypervisor for anything right now
+        # hypervisorThread.start()
 
         currentState = rocketState.GET_CONFIG
 
